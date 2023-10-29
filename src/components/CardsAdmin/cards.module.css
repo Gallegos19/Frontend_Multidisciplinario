@@ -1,0 +1,30 @@
+.contenedor {
+    background-color: white;
+    width: 35vw;
+    height: 12vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    justify-content: center; 
+    
+}
+
+.contenido {
+    display: flex;
+    gap: 40px;
+    align-items: center; 
+    justify-content: center; 
+}
+.cantidad{
+    display: flex;
+    justify-content: center;
+    width: 70px;
+}
+
+
+img {
+    display: flex;
+    width: 15%;
+    margin-bottom: 5%;
+    
+}

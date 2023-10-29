@@ -1,0 +1,17 @@
+.containerApartador{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: auto;
+}
+.cards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3%;
+    flex-wrap: wrap;
+    gap: 4%;
+    width: 80%;
+}

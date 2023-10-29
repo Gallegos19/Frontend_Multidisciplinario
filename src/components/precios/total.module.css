@@ -1,0 +1,37 @@
+.contenido {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 15px;
+    background-color: rgb(117, 247, 117);
+    width:9rem;
+    text-align: center;
+    margin-right: 5em;
+    
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    margin-top: 1px;
+    margin-right: 10px;
+}
+
+.total {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+    
+}
+
+h3 {
+    margin: 0;
+    
+}
+
+.gancia {
+    display: flex;
+    margin-left: 30px;
+    font-size: 24px;
+}

@@ -1,0 +1,10 @@
+.containerText a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10%;
+    text-decoration: none;
+    color: #083285;
+    font-size: 0.9rem;
+    font-family: 'Poppins';
+}

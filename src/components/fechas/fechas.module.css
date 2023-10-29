@@ -1,0 +1,25 @@
+.contenedor {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  gap: 1rem;
+  width: 100%;
+  margin-left: 5em;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.fecha h3 {
+  font-size: 1rem;
+}
+@media screen and (max-width:650px){
+    .contenedor{
+        flex-direction: column;
+    }
+}
