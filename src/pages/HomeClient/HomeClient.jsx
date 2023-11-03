@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import NavClient from '../../components/NavClient/NavClient'
 import Carrusel from '../../components/Carrusel/Carrusel'
 import tennis from '../../assets/descargatennis.png'
+import tennis2 from '../../assets/tenisNike.png'
 import Cards from '../../components/CardClient/CardsClient'
 
 
@@ -9,9 +10,9 @@ import Cards from '../../components/CardClient/CardsClient'
 
 export default function HomeClient() {
     const productos = [
-        { id: 1, marca: "Nike", imagen: tennis, modelo: "Nike AF1", precio: 2000,cantidad:1, star: 5 },
-        { id: 2, marca: "Nike", imagen: tennis, modelo: "Nike AF1", precio: 3000,cantidad:1, star: 4 },
-        { id: 3, marca: "Nike", imagen: tennis, modelo: "Nike AF1", precio: 1000,cantidad:1, star: 3 },
+        { id: 1, marca: "Nike", imagen: tennis2, modelo: "Nike AF1", precio: 2000,cantidad:1, star: 5 },
+        { id: 2, marca: "Nike", imagen: tennis2, modelo: "Nike AF1", precio: 3000,cantidad:1, star: 4 },
+        { id: 3, marca: "Nike", imagen: tennis2, modelo: "Nike AF1", precio: 1000,cantidad:1, star: 3 },
         { id: 4, marca: "Nike", imagen: tennis, modelo: "Nike AF1", precio: 2300,cantidad:1, star: 2 },
         { id: 5, marca: "Nike", imagen: tennis, modelo: "Nike AF1", precio: 2500,cantidad:1, star: 5 }
         // Agrega más productos según sea necesario
@@ -27,6 +28,7 @@ export default function HomeClient() {
           <Cards
             key={producto.id}
             id={producto.id}
+            imagen={producto.imagen}
             marca={producto.marca}
             modelo={producto.modelo}
             precio={producto.precio}

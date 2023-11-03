@@ -14,9 +14,6 @@ export default function HomeAdmin() {
                 <div className={Style.datos}>
                     <Fechas />
                     <Total />
-                   
-                    
-
                 </div>
             
                 <div className={Style.registros}>

@@ -9,30 +9,31 @@ import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 const optionsData = {
   caballero: [
-    { label: "Tennis", route: "/caballero/option1" },
-    { label: "Zapatos", route: "/caballero/option2" },
-    { label: "Sandalias", route: "/caballero/option3" },
+    { label: "Tennis", route: "/caballero/tennis" },
+    { label: "Zapatos", route: "/caballero/zapatos" },
+    { label: "Sandalias", route: "/caballero/sandalias" },
+    { label: "Botas", route: "/caballero/botas" },
   ],
   dama: [
-    { label: "Tennis", route: "/damas/option1" },
-    { label: "Zapatos", route: "/damas/option2" },
-    { label: "Sandalias", route: "/damas/option3" },
+    { label: "Tennis", route: "/damas/tennis" },
+    { label: "Zapatos", route: "/damas/zapatos" },
+    { label: "Sandalias", route: "/damas/sandalias" },
+    { label: "Tacones", route: "/damas/tacones" },
   ],
   ninos: [
-    { label: "Tennis", route: "/ninos/option1" },
-    { label: "Zapatos", route: "/ninos/option2" },
-    { label: "Sandalias", route: "/ninos/option3" },
+    { label: "Tennis", route: "/ninos/tennis" },
+    { label: "Zapatos", route: "/ninos/zapatos" },
+    { label: "Sandalias", route: "/ninos/sandalias" },
   ],
-  otros: [
-    { label: "Opción 1", route: "/otros/option1" },
-    { label: "Opción 2", route: "/otros/option2" },
-    { label: "Opción 3", route: "/otros/option3" },
+  marcas: [
+    { label: "Nike", route: "/marcas/nike" },
+    { label: "Puma", route: "/marcas/puma" },
+    { label: "Adidas", route: "/marcas/adidas" },
+    { label: "Otros", route: "/marcas/otros" },
   ],
 };
 
 const NavClient = () => {
-
-
   const navigate = useNavigate();
 
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -82,11 +83,11 @@ const NavClient = () => {
       </div>
 
       <div className={`${style.menu} `}>
-        <a className={style.a} onClick={() => handleMenuToggle("otros")}>
-          Otros
+        <a className={style.a} onClick={() => handleMenuToggle("marcas")}>
+          Marcas
         </a>
-        {activeMenu === "otros" && (
-          <DropdownOptions options={optionsData.otros} onClick={navigate} />
+        {activeMenu === "marcas" && (
+          <DropdownOptions options={optionsData.marcas} onClick={navigate} />
         )}
       </div>
 

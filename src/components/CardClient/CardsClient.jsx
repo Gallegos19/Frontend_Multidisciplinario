@@ -25,15 +25,15 @@ export default function Card(props) {
   return (
     <div className={style.containerCard}>
       <div className={style.tenis}>
-        <Imagen width="12" imagen={tenis} />
+        <Imagen width="12" imagen={props.imagen} />
       </div>
       <div className={style.informacion}>
       <Rating ratingValue={props.stars} id={props.id} />
         <Text text={props.modelo} />
         <Text text={`Precio: $${props.precio}`} />
-        <div className={style.boton} onClick={onAdd}>
+        {/* <div className={style.boton} onClick={onAdd}>
         <Button nombre='Agregar al carrito'/>
-        </div>
+        </div> */}
       </div>
     </div>
   );
