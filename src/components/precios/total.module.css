@@ -45,6 +45,7 @@ h3 {
         background-color: rgb(117, 247, 117);
         text-align: center;
         width: 8rem;
+        margin: 0;
     }
     .icon {
         display: flex;

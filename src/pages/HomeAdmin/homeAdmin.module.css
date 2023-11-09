@@ -39,37 +39,6 @@
     width: 30vw;
 }
 
-
-@media screen and (min-width: 480px) and (max-width: 767px) {
-    .contenedor{
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        margin: auto;
-    }
-
-    .registros{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 15%;
-        width: 100%;
-    }
-
-    .datos{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-direction: row;
-        gap: 6rem;
-        width: 100%;
-        margin: 0;
-    }
-    
-    
-}
-
 @media screen and (max-width:480px) {
     .contenedor{
         display: flex;
@@ -89,12 +58,70 @@
 
     .datos{
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         flex-direction: row;
         gap: 6rem;
         width: 100%;
     }
     
+     
+}   
+
+
+@media screen and (min-width: 480px) and (max-width: 912px) {
+    .contenedor{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        margin: auto;
+    }
+
+    .registros{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 15%;
+        width: 100%;
+    }
+
+    .datos{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        gap: 6rem;
+        width: 100%;
+        
+    }
+    
     
 }
+@media screen and (min-width: 539px) and (max-width: 540px) {
+    .contenedor{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        margin: auto;
+    }
+
+    .registros{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 15%;
+        width: 100%;
+    }
+
+    .datos{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        gap: 6rem;
+        width: 100%;
+    }
+}  
+

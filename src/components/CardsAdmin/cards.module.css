@@ -29,7 +29,26 @@ img {
     
 }
 
-@media screen and (max-width:480px) {
+
+@media screen and (max-width:1024px) {
+    .contenedor {
+        background-color: white;
+        width: 45vw;
+        height: 10vh;
+        display: flex;
+        flex-direction: row;
+        align-items: center; 
+        justify-content: flex-end; 
+        
+    }
+     .contenido {
+        display: flex;
+        gap: 2em;
+        align-items: center; 
+        justify-content: center; 
+    }
+}   
+@media screen and (min-width: 480px) and (max-width: 912px) {
     .contenedor {
         background-color: white;
         width: 80vw;
@@ -42,7 +61,7 @@ img {
     }
     .contenido {
         display: flex;
-        gap: 10px;
+        gap: 4em;
         align-items: center; 
         justify-content: center; 
     }
@@ -60,7 +79,16 @@ img {
     }
 }
 
-@media screen and (min-width: 480px) and (max-width: 767px) {
+@media screen and (min-width: 539px) and (max-width: 540px)  {
+    .contenido {
+        display: flex;
+        gap: 2em;
+        align-items: center; 
+        justify-content: center; 
+    }
+}
+
+@media screen and (max-width:480px) {
     .contenedor {
         background-color: white;
         width: 80vw;
