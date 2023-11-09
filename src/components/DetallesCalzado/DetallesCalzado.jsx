@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./DetallesCalzado.module.css";
 import Title from "../../components/Title/Title";
 import Imagen from "../Imagen/Imagen";
@@ -10,7 +10,21 @@ export default function DetallesCalzado(props) {
   const [mostrarContainer2, setMostrarContainer2] = useState(false);
   const [number, setNumber] = useState(0);
   const [tallaSeleccionada, setTallaSeleccionada] = useState(null);
-  const tallas = [24,25,26,27,28,29]
+  const tallas = [24,25,26,27,28,29];
+  const [producto, setProducto] = useState(null);
+  const [productData, setProductData] = useState({});
+
+  useEffect(() => {
+    // Obtener el producto del localStorage
+    const productData = localStorage.getItem("CardItem");
+    
+    // Parsear el objeto JSON de la cadena recuperada
+    const parsedProductData = JSON.parse(productData);
+  
+    // Actualizar el estado del producto con los datos parseados
+    setProductData(parsedProductData);
+  }, []);
+
   const toggleContainer2 = () => {
     setMostrarContainer2(!mostrarContainer2);
   };
@@ -30,15 +44,14 @@ export default function DetallesCalzado(props) {
     <div className={style.containerDetalles}>
       <div className={style.container1}>
         <div className={style.sectionFotos}>
-          <Imagen imagen={img} width="20" />
-        </div>
+       <Imagen imagen={productData.imagen} width="20" />      </div>
         <div className={style.sectionInfo}>
-          <Title text="Tênis Nike Dunk Low Se Bear Masculino" />
-          <h3>$2000</h3>
+          <Title text={productData.modelo}/>
+          <h3>${productData.precio}</h3>
           <div className={style.options}>
-            <Imagen imagen={img} width="5" />
-            <Imagen imagen={img} width="5" />
-            <Imagen imagen={img} width="5" />
+            <Imagen imagen={productData.imagen} width="5" />
+            <Imagen imagen={productData.imagen} width="5" />
+            <Imagen imagen={productData.imagen} width="5" />
           </div>
           <div className={style.contenedorTallas}>
           {tallas.map((talla, index) => (
@@ -87,12 +100,7 @@ export default function DetallesCalzado(props) {
         </div>
         <div className={style.line}>
           <hr
-            style={{
-              border: "1px solid #3DE8FF",
-              width: "10%",
-              display: "flex",
-              marginLeft: "2%",
-            }}
+            className={style.linea}
           />
         </div>
       </div>

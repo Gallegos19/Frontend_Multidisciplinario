@@ -4,6 +4,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    
 }
 .container1{
     display: flex;
@@ -55,6 +56,13 @@
     margin-top: -1%;
 }
 
+.linea {
+    border: 1px solid #3DE8FF;
+    width: 10%;
+    display: flex;
+    margin-left: 2%;
+  }
+  
 .TextDescripcion{ 
         cursor: pointer;
         display: flex;
@@ -147,4 +155,38 @@
     justify-content: center;
     align-items: center;
     width: 50%;
+}
+@media screen and (max-width:650px) {
+    
+    .container1{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: auto;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 3%;
+        margin-top: 3%;
+    }
+    .sectionFotos{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .sectionInfo{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: left;
+    
+    }
+    .line {
+      
+        margin-top: -6%;
+    }
+    .linea {
+        
+        width: 35%;
+      
+    }
 }

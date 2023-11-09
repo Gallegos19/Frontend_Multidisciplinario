@@ -7,6 +7,7 @@ import DropdownOptions from "../../components/DropdownOptions/DropdownOptions";
 import UserMenu from "../MenuUser/MenuUser";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
+import { AiOutlineMenu } from 'react-icons/ai';
 const optionsData = {
   caballero: [
     { label: "Tennis", route: "/caballero/tennis" },

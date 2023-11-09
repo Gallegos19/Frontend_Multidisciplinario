@@ -4,7 +4,7 @@ import Carrusel from '../../components/Carrusel/Carrusel'
 import tennis from '../../assets/descargatennis.png'
 import tennis2 from '../../assets/tenisNike.png'
 import Cards from '../../components/CardClient/CardsClient'
-
+import Footer from '../../components/Footer/Footer';
 
   
 
@@ -36,7 +36,9 @@ export default function HomeClient() {
           />
         ))}
         </div>
+         
         </div>
+        <Footer/>
     </div>
   )
 }

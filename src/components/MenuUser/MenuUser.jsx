@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { BiUserCircle, BiCart, BiUser, BiUserX } from "react-icons/bi";
+import { BiUserCircle, BiCart, BiUser, BiUserX, BiHelpCircle   } from "react-icons/bi";
 import style from "./MenuUser.module.css"; // Agrega tus estilos CSS aquí
 import { useNavigate } from "react-router-dom";
 
@@ -56,11 +56,6 @@ const UserMenu = ({ nombre }) => {
           <BiCart size={25} color="black" />
           <a>Carrito</a>
         </button>
-        {showCartNotification && (
-          <div className={style.cartNotification}>
-            ¡Producto agregado al carrito!
-          </div>
-        )}
         <button onClick={() => navigate("/login")}>
           <BiUserCircle size={25} color="black" />
           <a>Iniciar Sesion</a>
@@ -68,6 +63,10 @@ const UserMenu = ({ nombre }) => {
         <button onClick={handleAddToCloseSesion}>
           <BiUserX size={25} color="black" />
           <a>Cerrar Sesion</a>
+        </button>
+        <button onClick={handleAddToCloseSesion}>
+        <BiHelpCircle  size={25} color="black" />
+          <a>Ayuda</a>
         </button>
       </div>
     </div>
