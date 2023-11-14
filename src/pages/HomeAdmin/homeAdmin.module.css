@@ -35,8 +35,8 @@
     width: 100%;
 }
 
-.grafica{
-    width: 30vw;
+.contendorgrafica{
+    color: black;
 }
 
 @media screen and (max-width:480px) {

@@ -1,33 +1,40 @@
-import React from "react";
-import Fechas from '../../components/fechas/fechas'
+import React, { useState } from "react";
+import Fechas from '../../components/fechas/fechas';
 import Total from "../../components/precios/total";
 import Registros from "../../components/registros/resgistros";
-import Grafica from "../../assets/grafica.png";
+import Grafica from "../../components/Grafica/grafica";
 import Style from "./homeAdmin.module.css";
 import NavAdmin from "../../components/NavAdmin/NavAdmin";
+
 export default function HomeAdmin() {
-    return (
-        <div>
-            <div className={Style.contenedor}>
-                <NavAdmin />
-                <div className={Style.contenido}>
-                <div className={Style.datos}>
-                    <Fechas />
-                    <Total />
-                </div>
-            
-                <div className={Style.registros}>
-                <Registros />
-              
-                <div className={Style.contendorgrafica}>
-                <h3 className={Style.producto}>Top Productos del dia</h3>                
-                 <img className={Style.grafica} src={Grafica} alt="" />
+  // Estado inicial de cards
+  const [cards, setCards] = useState([
+    { marca: "Nike", modelo: "Jadidas", cantidad: 4, precio: "$150" },
+    { marca: "Nike", modelo: "Jordan ", cantidad: 3, precio: "$150" },
+    { marca: "Nike", modelo: "Kike", cantidad: 10, precio: "$150" },
+    { marca: "Nike", modelo: "Pumba", cantidad: 1, precio: "$150" },
+    // Agrega más datos según sea necesario
+  ]);
 
-                 </div>
-
-                </div>
-                </div>
+  return (
+    <div>
+      <div className={Style.contenedor}>
+        <NavAdmin />
+        <div className={Style.contenido}>
+          <div className={Style.datos}>
+            <Fechas />
+            <Total />
+          </div>
+          <div className={Style.registros}>
+           
+            <Registros cards={cards} />
+            <div className={Style.contendorgrafica}>
+            <h2>Productos más populares</h2>
+              <Grafica cards={cards} />
             </div>
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
