@@ -5,9 +5,9 @@ import tennis from '../../assets/descargatennis.png'
 import tennis2 from '../../assets/tenisNike.png'
 import Cards from '../../components/CardClient/CardsClient'
 import Footer from '../../components/Footer/Footer';
-
-  
-
+import imagen1 from '../../assets/adidashombre.jpg';
+import imagen2 from '../../assets/adidasmujer.jpg';
+import imagen3 from '../../assets/pumaMujer.jpg';
 export default function HomeClient() {
     const productos = [
         { id: 1, marca: "Nike", imagen: tennis2, modelo: "Nike AF1", precio: 2000,cantidad:1, star: 5 },
@@ -17,10 +17,12 @@ export default function HomeClient() {
         { id: 5, marca: "Nike", imagen: tennis, modelo: "Nike AF1", precio: 2500,cantidad:1, star: 5 }
         // Agrega más productos según sea necesario
       ];
+
+     
   return (
     <div style={{display:'flex', flexDirection:'column', width:'100%', margin:'auto'}}>
         <NavClient />
-        <Carrusel marca="Nike" img={tennis} modelo='Air Force One'/>
+        <Carrusel imagenes={productos}  />
         <div style={{display:'flex', flexDirection:'column', width:'80%',margin:'auto',marginTop:'2%'}}>
         <h3 style={{fontFamily:'Poppins',marginBottom:'2%'}}>Nuevos Lanzamientos</h3>
         <div style={{display:'flex', width:'100%',margin:'auto',flexWrap:'wrap'}}>

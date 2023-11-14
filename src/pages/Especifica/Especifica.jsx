@@ -5,7 +5,7 @@ export default function Especifica() {
   return (
     <div>
         <NavAdmin />
-        <DetallesCalzado />
+        <DetallesCalgit zado />
     </div>
   )
 }

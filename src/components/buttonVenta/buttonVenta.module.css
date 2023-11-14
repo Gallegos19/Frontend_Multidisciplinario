@@ -5,24 +5,12 @@
    
 }
 
-.cantidad{
-    display: inline-flex;
-    flex-direction: column;
-    text-align: center;
-    padding: 0.5rem 1rem;
-    background: linear-gradient(180deg, rgba(61, 232, 255, 0.50) 0%, rgba(18, 227, 255, 0.00) 98.44%);
-    font-size: 1rem;
-    border-radius: 5px;
-    border-color: transparent;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-}
 
 .button{
     display: flex;
     justify-content: center;
     background: linear-gradient(180deg, rgba(61, 232, 255, 0.50) 0%, rgba(18, 227, 255, 0.00) 98.44%);
    border: none;
-  
     padding: 12px 20px;
     font-size: 1rem;
 	font-family: 'Poppins';
