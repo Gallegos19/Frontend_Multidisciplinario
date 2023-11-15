@@ -1,14 +1,15 @@
 import React from 'react'
 import NavClient from '../../components/NavClient/NavClient'
 import Cards from '../../components/CardClient/CardsClient'
-import tenis from '../../assets/tenisninos.jpg'
+import tenis from '../../assets/tenisninos.jpg';
+import Footer from '../../components/Footer/Footer';
 export default function Tennis() {
     const productos = [
-        { id: 1, marca: "Nike", imagen: tenis, modelo: "Nike ", precio: 2000,cantidad:1, star: 5 },
-        { id: 2, marca: "Nike", imagen: tenis, modelo: "Nike ", precio: 3000,cantidad:1, star: 4 },
-        { id: 3, marca: "Nike", imagen: tenis, modelo: "Nike ", precio: 1000,cantidad:1, star: 3 },
-        { id: 4, marca: "Nike", imagen: tenis, modelo: "Nike ", precio: 2300,cantidad:1, star: 2 },
-        { id: 5, marca: "Nike", imagen: tenis, modelo: "Nike ", precio: 2500,cantidad:1, star: 5 }
+        { id: 81, marca: "Nike", imagen: tenis, modelo: "Nike ", precio: 2000,cantidad:1, star: 5 },
+        { id: 82, marca: "Nike", imagen: tenis, modelo: "Nike ", precio: 3000,cantidad:1, star: 4 },
+        { id: 83, marca: "Nike", imagen: tenis, modelo: "Nike ", precio: 1000,cantidad:1, star: 3 },
+        { id: 84, marca: "Nike", imagen: tenis, modelo: "Nike ", precio: 2300,cantidad:1, star: 2 },
+        { id: 85, marca: "Nike", imagen: tenis, modelo: "Nike ", precio: 2500,cantidad:1, star: 5 }
         // Agrega más productos según sea necesario
       ];
   return (
@@ -31,6 +32,7 @@ export default function Tennis() {
         ))}
         </div>
         </div>
+        <Footer/>
     </div>
   )
 }

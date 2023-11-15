@@ -1,14 +1,15 @@
 import React from 'react'
 import NavClient from '../../components/NavClient/NavClient'
 import Cards from '../../components/CardClient/CardsClient'
-import Tenis from '../../assets/NikeDunk.webp'
+import Tenis from '../../assets/NikeDunk.webp';
+import Footer from '../../components/Footer/Footer';
 export default function Tennis() {
     const productos = [
-        { id: 1, marca: "Nike", imagen: Tenis, modelo: "Nike AF1", precio: 2000,cantidad:1, star: 5 },
-        { id: 2, marca: "Nike", imagen: Tenis, modelo: "Nike AF1", precio: 3000,cantidad:1, star: 4 },
-        { id: 3, marca: "Nike", imagen: Tenis, modelo: "Nike AF1", precio: 1000,cantidad:1, star: 3 },
-        { id: 4, marca: "Nike", imagen: Tenis, modelo: "Nike AF1", precio: 2300,cantidad:1, star: 2 },
-        { id: 5, marca: "Nike", imagen: Tenis, modelo: "Bota AF1", precio: 2500,cantidad:1, star: 5 }
+        { id: 11, marca: "Nike", imagen: Tenis, modelo: "Nike AF1", precio: 2000,cantidad:1, star: 5 },
+        { id: 12, marca: "Nike", imagen: Tenis, modelo: "Nike AF1", precio: 3000,cantidad:1, star: 4 },
+        { id: 13, marca: "Nike", imagen: Tenis, modelo: "Nike AF1", precio: 1000,cantidad:1, star: 3 },
+        { id: 14, marca: "Nike", imagen: Tenis, modelo: "Nike AF1", precio: 2300,cantidad:1, star: 2 },
+        { id: 15, marca: "Nike", imagen: Tenis, modelo: "Bota AF1", precio: 2500,cantidad:1, star: 5 }
         // Agrega más productos según sea necesario
       ];
   return (
@@ -31,6 +32,7 @@ export default function Tennis() {
         ))}
         </div>
         </div>
+        <Footer/>
     </div>
   )
 }

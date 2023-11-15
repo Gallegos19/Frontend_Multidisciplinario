@@ -1,14 +1,15 @@
 import React from 'react'
 import NavClient from '../../components/NavClient/NavClient'
 import Cards from '../../components/CardClient/CardsClient'
-import sandalia from '../../assets/sandaliasMujer.jpg'
+import sandalia from '../../assets/sandaliasMujer.jpg';
+import Footer from '../../components/Footer/Footer';
 export default function Sandalias() {
     const productos = [
-        { id: 1, marca: "Nike", imagen: sandalia, modelo: "Nike AF1", precio: 2000,cantidad:1, star: 5 },
-        { id: 2, marca: "Nike", imagen: sandalia, modelo: "Nike AF1", precio: 3000,cantidad:1, star: 4 },
-        { id: 3, marca: "Nike", imagen: sandalia, modelo: "Nike AF1", precio: 1000,cantidad:1, star: 3 },
-        { id: 4, marca: "Nike", imagen: sandalia, modelo: "Nike AF1", precio: 2300,cantidad:1, star: 2 },
-        { id: 5, marca: "Nike", imagen: sandalia, modelo: "Bota AF1", precio: 2500,cantidad:1, star: 5 }
+        { id: 21, marca: "Nike", imagen: sandalia, modelo: "Nike AF1", precio: 2000,cantidad:1, star: 5 },
+        { id: 22, marca: "Nike", imagen: sandalia, modelo: "Nike AF1", precio: 3000,cantidad:1, star: 4 },
+        { id: 23, marca: "Nike", imagen: sandalia, modelo: "Nike AF1", precio: 1000,cantidad:1, star: 3 },
+        { id: 24, marca: "Nike", imagen: sandalia, modelo: "Nike AF1", precio: 2300,cantidad:1, star: 2 },
+        { id: 25, marca: "Nike", imagen: sandalia, modelo: "Bota AF1", precio: 2500,cantidad:1, star: 5 }
         // Agrega más productos según sea necesario
       ];
   return (
@@ -31,6 +32,7 @@ export default function Sandalias() {
         ))}
         </div>
         </div>
+        <Footer />
     </div>
   )
 }

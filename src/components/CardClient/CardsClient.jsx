@@ -1,24 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { BsTrash } from "react-icons/bs";
-import Imagen from "../Imagen/Imagen";
+import Imagen from "../Imagen/Imagen";   
 import tenis from "../../assets/tenisNike.png";
 import Text from "../Text/Text2";
 import Rating from "../Rating/Rating";
 import style from "./CardsClient.module.css";
 import Button from "../button/Button";
 import { useNavigate } from "react-router-dom";
-import { UseCartContext } from "../../context/CartContext";
 
 
 export default function Card(props) {
   const navigate = useNavigate();
-  const { addProduct } = UseCartContext();
   const data = {
     id: props.id,
-    marca: props.marca,
+    marca: props.marca, 
     imagen: props.imagen,
-    modelo: props.modelo,
+    modelo: props.modelo,    
     precio: props.precio,
     stars: props.stars,
   

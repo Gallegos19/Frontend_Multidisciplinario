@@ -9,22 +9,22 @@ const SocialMediaIcons = () => {
   return (
     <div className={Style.card}>
       <a href="#" className={`${Style.socialContainer} ${Style.containerOne}`}>
-        <SlSocialInstagram size={16} className={Style.socialSvg} />
+        <SlSocialInstagram size={19} className={Style.socialSvg} />
       </a>
 
       <a href="#" className={`${Style.socialContainer} ${Style.containerTwo}`}>
-        <TiSocialTwitter size={16} className={Style.socialSvg} />
+        <TiSocialTwitter size={19} className={Style.socialSvg} />
       </a>
 
       <a href="#" className={`${Style.socialContainer} ${Style.containerThree}`}>
-        <TiSocialFacebook size={16} className={Style.socialSvg} />
+        <TiSocialFacebook size={19} className={Style.socialSvg} />
       </a>
 
       <a href="#" className={`${Style.socialContainer} ${Style.containerFour}`}>
-        <FaWhatsapp size={16} className={Style.socialSvg} />
+        <FaWhatsapp size={19} className={Style.socialSvg} />
       </a>
       <a href="#" className={`${Style.socialContainer} ${Style.containerFive}`}>
-        <BiLogoGmail size={16} className={Style.socialSvg} />
+        <BiLogoGmail size={19} className={Style.socialSvg} />
       </a>
     </div>
   );

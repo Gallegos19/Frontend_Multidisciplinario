@@ -2,6 +2,7 @@ import React from 'react'
 import NavClient from '../../components/NavClient/NavClient'
 import Cards from '../../components/CardClient/CardsClient'
 import Bota  from '../../assets/Bota.webp'
+import Footer from '../../components/Footer/Footer';
 export default function Botas() {
     const productos = [
         { id: 1, marca: "Bota", imagen: Bota, modelo: "Bota AF1", precio: 2000,cantidad:1, star: 5 },
@@ -31,6 +32,7 @@ export default function Botas() {
         ))}
         </div>
         </div>
+        <Footer/>
     </div>
   )
 }

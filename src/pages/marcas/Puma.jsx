@@ -3,21 +3,22 @@ import NavClient from '../../components/NavClient/NavClient'
 import Cards from '../../components/CardClient/CardsClient'
 import puma from '../../assets/pumaHombre.jpg'
 import pumaM from '../../assets/pumaMujer.jpg'
+import Footer from '../../components/Footer/Footer';
 export default function Puma() {
     const productos = [
-        { id: 1, marca: "Nike", imagen: puma, modelo: "Nike ", precio: 2000,cantidad:1, star: 5 },
-        { id: 2, marca: "Nike", imagen: puma, modelo: "Nike ", precio: 3000,cantidad:1, star: 4 },
-        { id: 3, marca: "Nike", imagen: puma, modelo: "Nike ", precio: 1000,cantidad:1, star: 3 },
-        { id: 4, marca: "Nike", imagen: puma, modelo: "Nike ", precio: 2300,cantidad:1, star: 2 },
-        { id: 5, marca: "Nike", imagen: puma, modelo: "Nike ", precio: 2500,cantidad:1, star: 5 }
+        { id: 61, marca: "Nike", imagen: puma, modelo: "Nike ", precio: 2000,cantidad:1, star: 5 },
+        { id: 62, marca: "Nike", imagen: puma, modelo: "Nike ", precio: 3000,cantidad:1, star: 4 },
+        { id: 63, marca: "Nike", imagen: puma, modelo: "Nike ", precio: 1000,cantidad:1, star: 3 },
+        { id: 64, marca: "Nike", imagen: puma, modelo: "Nike ", precio: 2300,cantidad:1, star: 2 },
+        { id: 65, marca: "Nike", imagen: puma, modelo: "Nike ", precio: 2500,cantidad:1, star: 5 }
         // Agrega más productos según sea necesario
       ];
       const productos2 = [
-        { id: 6, marca: "Nike", imagen: pumaM, modelo: "Nike ", precio: 2000,cantidad:1, star: 5 },
-        { id: 7, marca: "Nike", imagen: pumaM, modelo: "Nike ", precio: 3000,cantidad:1, star: 4 },
-        { id: 8, marca: "Nike", imagen: pumaM, modelo: "Nike ", precio: 1000,cantidad:1, star: 3 },
-        { id: 9, marca: "Nike", imagen: pumaM, modelo: "Nike ", precio: 2300,cantidad:1, star: 2 },
-        { id: 10, marca: "Nike", imagen: pumaM, modelo: "Nike ", precio: 2500,cantidad:1, star: 5 }
+        { id: 66, marca: "Nike", imagen: pumaM, modelo: "Nike ", precio: 2000,cantidad:1, star: 5 },
+        { id: 67, marca: "Nike", imagen: pumaM, modelo: "Nike ", precio: 3000,cantidad:1, star: 4 },
+        { id: 68, marca: "Nike", imagen: pumaM, modelo: "Nike ", precio: 1000,cantidad:1, star: 3 },
+        { id: 69, marca: "Nike", imagen: pumaM, modelo: "Nike ", precio: 2300,cantidad:1, star: 2 },
+        { id: 70, marca: "Nike", imagen: pumaM, modelo: "Nike ", precio: 2500,cantidad:1, star: 5 }
         // Agrega más productos según sea necesario
       ];
   return (
@@ -54,6 +55,7 @@ export default function Puma() {
         ))}
         </div>
         </div>
+        <Footer/>
     </div>
   )
 }

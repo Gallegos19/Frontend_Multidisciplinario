@@ -65,7 +65,11 @@ a{
     width: auto;
     
 }
-
+/* NavAdmin.module.css */
+.activeMenu {
+    font-weight: bold;
+  }
+  
   
 @media screen and (max-width:950px) {
     .logo{

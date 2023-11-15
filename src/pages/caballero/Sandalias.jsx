@@ -1,14 +1,15 @@
 import React from 'react'
 import NavClient from '../../components/NavClient/NavClient'
 import Cards from '../../components/CardClient/CardsClient'
-import Sandalia from '../../assets/sandaliaHombre.jpg'
+import Sandalia from '../../assets/sandaliaHombre.jpg';
+import Footer from '../../components/Footer/Footer';
 export default function Sandalias() {
     const productos = [
-        { id: 1, marca: "Bota", imagen: Sandalia, modelo: "Bota AF1", precio: 2000,cantidad:1, star: 5 },
-        { id: 2, marca: "Bota", imagen: Sandalia, modelo: "Bota AF1", precio: 3000,cantidad:1, star: 4 },
-        { id: 3, marca: "Bota", imagen: Sandalia, modelo: "Bota AF1", precio: 1000,cantidad:1, star: 3 },
-        { id: 4, marca: "Bota", imagen: Sandalia, modelo: "Bota AF1", precio: 2300,cantidad:1, star: 2 },
-        { id: 5, marca: "Bota", imagen: Sandalia, modelo: "Bota AF1", precio: 2500,cantidad:1, star: 5 }
+        { id: 6, marca: "Bota", imagen: Sandalia, modelo: "Bota AF1", precio: 2000,cantidad:1, star: 5 },
+        { id: 7, marca: "Bota", imagen: Sandalia, modelo: "Bota AF1", precio: 3000,cantidad:1, star: 4 },
+        { id: 8, marca: "Bota", imagen: Sandalia, modelo: "Bota AF1", precio: 1000,cantidad:1, star: 3 },
+        { id: 9, marca: "Bota", imagen: Sandalia, modelo: "Bota AF1", precio: 2300,cantidad:1, star: 2 },
+        { id: 10, marca: "Bota", imagen: Sandalia, modelo: "Bota AF1", precio: 2500,cantidad:1, star: 5 }
         // Agrega más productos según sea necesario
       ];
   return (
@@ -31,6 +32,7 @@ export default function Sandalias() {
         ))}
         </div>
         </div>
+        <Footer/>
     </div>
   )
 }

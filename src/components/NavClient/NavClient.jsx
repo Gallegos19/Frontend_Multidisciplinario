@@ -1,12 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import style from "../NavAdmin/NavAdmin.module.css";
 import logo from "../../assets/logo.png";
 import Buscador from "../Buscador/Buscador";
 import { BiUserCircle } from "react-icons/bi";
 import DropdownOptions from "../../components/DropdownOptions/DropdownOptions";
 import UserMenu from "../MenuUser/MenuUser";
-import { useNavigate } from "react-router-dom";
-import { CartContext } from "../../context/CartContext";
+import { useNavigate,useLocation } from "react-router-dom";
 import { AiOutlineMenu } from 'react-icons/ai';
 const optionsData = {
   caballero: [
@@ -36,20 +35,38 @@ const optionsData = {
 
 const NavClient = () => {
   const navigate = useNavigate();
-
+  const location = useLocation();
+  const currentPath = location.pathname;
+  const [activeSection, setActiveSection] = useState(null);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [activeMenu, setActiveMenu] = useState(null);
+
+  const handleMenuToggle = (menu) => {
+    setActiveSection(menu);
+    setActiveMenu(activeMenu === menu ? null : menu);
+  };
+
+  const closeMenus = () => {
+    setShowUserMenu(false);
+    setActiveMenu(null);
+  };
+
+  useEffect(() => {
+    // Agregar un event listener al montar el componente para cerrar los menús al hacer clic fuera de ellos
+    document.addEventListener("click", closeMenus);
+
+    // Limpiar el event listener al desmontar el componente
+    return () => {
+      document.removeEventListener("click", closeMenus);
+    };
+  }, []); 
 
   const handleUserMenuToggle = () => {
     setShowUserMenu(!showUserMenu);
   };
-  const [activeMenu, setActiveMenu] = useState(null);
-
-  const handleMenuToggle = (menu) => {
-    setActiveMenu(activeMenu === menu ? null : menu);
-  };
 
   return (
-    <div className={style.containerNav}>
+    <div className={style.containerNav} onClick={(e) => e.stopPropagation()}>
       <div className={style.logo}>
         <img src={logo} alt="" onClick={() => navigate("/")} />
       </div>
@@ -57,7 +74,7 @@ const NavClient = () => {
       <a onClick={() => navigate("/")}>Home</a>
 
       <div className={`${style.menu} `}>
-        <a className={style.a} onClick={() => handleMenuToggle("caballero")}>
+        <a className={`${style.a} ${currentPath.startsWith("/caballero") ? style.activeMenu : ""}`} onClick={() => handleMenuToggle("caballero")}>
           Caballero
         </a>
         {activeMenu === "caballero" && (
@@ -66,7 +83,7 @@ const NavClient = () => {
       </div>
 
       <div className={`${style.menu}`}>
-        <a className={style.a} onClick={() => handleMenuToggle("dama")}>
+        <a className={`${style.a} ${currentPath.startsWith("/damas") ? style.activeMenu : ""}`} onClick={() => handleMenuToggle("dama")}>
           Dama
         </a>
         {activeMenu === "dama" && (
@@ -75,8 +92,8 @@ const NavClient = () => {
       </div>
 
       <div className={`${style.menu} `}>
-        <a className={style.a} onClick={() => handleMenuToggle("ninos")}>
-          Niños
+        <a className={`${style.a} ${currentPath.startsWith("/ninos") ? style.activeMenu : ""}`} onClick={() => handleMenuToggle("ninos")}>
+          Niñ@s
         </a>
         {activeMenu === "ninos" && (
           <DropdownOptions options={optionsData.ninos} onClick={navigate} />
@@ -84,7 +101,7 @@ const NavClient = () => {
       </div>
 
       <div className={`${style.menu} `}>
-        <a className={style.a} onClick={() => handleMenuToggle("marcas")}>
+        <a className={`${style.a} ${currentPath.startsWith("/marcas") ? style.activeMenu : ""}`} onClick={() => handleMenuToggle("marcas")}>
           Marcas
         </a>
         {activeMenu === "marcas" && (

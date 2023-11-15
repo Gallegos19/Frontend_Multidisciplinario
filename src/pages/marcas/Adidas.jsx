@@ -3,21 +3,22 @@ import NavClient from '../../components/NavClient/NavClient'
 import Cards from '../../components/CardClient/CardsClient'
 import adidas from '../../assets/adidashombre.jpg'
 import adidasF from '../../assets/adidasmujer.jpg'
+import Footer from '../../components/Footer/Footer';
 export default function Adidas() {
     const productos = [
-        { id: 1, marca: "Nike", imagen: adidas, modelo: "Nike ", precio: 2000,cantidad:1, star: 5 },
-        { id: 2, marca: "Nike", imagen: adidas, modelo: "Nike ", precio: 3000,cantidad:1, star: 4 },
-        { id: 3, marca: "Nike", imagen: adidas, modelo: "Nike ", precio: 1000,cantidad:1, star: 3 },
-        { id: 4, marca: "Nike", imagen: adidas, modelo: "Nike ", precio: 2300,cantidad:1, star: 2 },
-        { id: 5, marca: "Nike", imagen: adidas, modelo: "Nike ", precio: 2500,cantidad:1, star: 5 }
+        { id: 41, marca: "Nike", imagen: adidas, modelo: "Nike ", precio: 2000,cantidad:1, star: 5 },
+        { id: 42, marca: "Nike", imagen: adidas, modelo: "Nike ", precio: 3000,cantidad:1, star: 4 },
+        { id: 43, marca: "Nike", imagen: adidas, modelo: "Nike ", precio: 1000,cantidad:1, star: 3 },
+        { id: 44, marca: "Nike", imagen: adidas, modelo: "Nike ", precio: 2300,cantidad:1, star: 2 },
+        { id: 45, marca: "Nike", imagen: adidas, modelo: "Nike ", precio: 2500,cantidad:1, star: 5 }
         // Agrega más productos según sea necesario
       ];
       const productos2 = [
-        { id: 6, marca: "Nike", imagen: adidasF, modelo: "Nike ", precio: 2000,cantidad:1, star: 5 },
-        { id: 7, marca: "Nike", imagen: adidasF, modelo: "Nike ", precio: 3000,cantidad:1, star: 4 },
-        { id: 8, marca: "Nike", imagen: adidasF, modelo: "Nike ", precio: 1000,cantidad:1, star: 3 },
-        { id: 9, marca: "Nike", imagen: adidasF, modelo: "Nike ", precio: 2300,cantidad:1, star: 2 },
-        { id: 10, marca: "Nike", imagen: adidasF, modelo: "Nike ", precio: 2500,cantidad:1, star: 5 }
+        { id: 46, marca: "Nike", imagen: adidasF, modelo: "Nike ", precio: 2000,cantidad:1, star: 5 },
+        { id: 47, marca: "Nike", imagen: adidasF, modelo: "Nike ", precio: 3000,cantidad:1, star: 4 },
+        { id: 48, marca: "Nike", imagen: adidasF, modelo: "Nike ", precio: 1000,cantidad:1, star: 3 },
+        { id: 49, marca: "Nike", imagen: adidasF, modelo: "Nike ", precio: 2300,cantidad:1, star: 2 },
+        { id: 50, marca: "Nike", imagen: adidasF, modelo: "Nike ", precio: 2500,cantidad:1, star: 5 }
         // Agrega más productos según sea necesario
       ];
   return (
@@ -54,6 +55,7 @@ export default function Adidas() {
         ))}
         </div>
         </div>
+        <Footer/>
     </div>
   )
 }
