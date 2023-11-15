@@ -15,17 +15,26 @@ p{
     flex-wrap: wrap;
     user-select: none;
 }
-.tenis{
+.imageContainer{
     display: flex;
     justify-content: center;
     align-items: center;
     transform: rotate(-45deg);
     width: 13rem;
-    margin-left: 2%;
+    margin-left: 5%;
     margin-right: 5%;
-    margin-bottom: 5%;
-    margin-top: 1%;
- 
+    margin-bottom: 2%;
+    margin-top: 4%;
+    
+}
+
+.imageContainer img {
+    width: 10em;
+    transition: transform 0.3s ease-in-out;
+}
+
+.imageContainer img:hover {
+    transform: scale(1.1);
 }
 .tenis img:hover {
     transform: scale(1.1);
@@ -35,16 +44,16 @@ p{
 transform: scaleX(-1) !important;
 transform: scale(1.1);
 }
-.tennisDerecha:hover{
+/*.tennisDerecha:hover{
     transform: scale(1.1);
-}
+}*/
 .tennisDerecha{
     display: flex;
     width: 3rem;
     justify-content: right;
     align-items:center;
     margin-left: 18rem;
-    margin-top: 10%;
+    margin-top: 5%;
 }
 .marca{
     display: flex;
@@ -66,7 +75,7 @@ transform: scale(1.1);
     justify-content: right;
     align-items: center;
     margin-right: 18rem;
-    margin-top: 10%;
+    margin-top: 5%;
     transform: scaleX(-1);
 }
 

@@ -1,72 +1,76 @@
-/* UserMenu.module.css */
-
 .userMenu {
-    display: flex;
-    flex-direction: column;
-    width: auto; /* Ajusta el ancho del menú desplegable según tus necesidades */
-    background-color: #fff; /* Color de fondo del menú */
-    position: absolute;
-    top: 16%;
-    left: 84%;
-    margin: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); /* Sombra del menú */
-    z-index: 1; 
-  }
-  
-  .userInfo {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-right: 20px;
-  }
-  
-  .userInfo span {
-    margin-left: 10px;
-  }
+  display: flex;
+  flex-direction: column;
+  width: auto; /* Ajusta el ancho del menú desplegable según tus necesidades */
+  background-color: #fff; /* Color de fondo del menú */
+  position: absolute;
+  top: 16%;
+  left: 84%;
+  gap: 5%;
+  margin: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); /* Sombra del menú */
+  z-index: 1; 
+}
 
-  .userActions a{
-    display: flex;
-    position: absolute;
-    left: 20%;
-    color: black;
-    font-family: 'Poppins';
-    font-size: 0.8rem;
+.userInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.userInfo span {
+  margin-left: 10px;
+}
+
+.userActions a {
+  display: flex;
+  position: absolute;
+  left: 30%;
+  color: black;
+  font-family: 'Poppins';
+  font-size: 0.8rem;
+  white-space: nowrap; /* Evitar el desbordamiento del texto */
+  overflow: hidden; /* Ocultar cualquier desbordamiento */
+  text-overflow: ellipsis; /* Mostrar puntos suspensivos (...) cuando el texto se desborda */
+}
+
+button{
+  color: black;
+}
+
+.userActions button {
+  display: flex;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 8rem;
+
+}
+
+.cartNotification {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ff0000;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-top: 5px;
+}
+@media screen and (max-width:550px){
+  .userMenu{
+      left:8.3rem;
+      top: 7rem;
+      width: auto;
   }
-  button{
-    color: black;
+}
+@media screen and (max-width:950px) and (min-width:551px){
+  .userMenu{
+      left: 72%;
+      top:5rem;
+      width: auto;
   }
-  
-  .userActions button {
-    display: flex;
-    justify-content: left;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .cartNotification {
-    display: flex;
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: #ff0000;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 1rem;
-    margin-top: 5px;
-  }
-  @media screen and (max-width:550px){
-    .userMenu{
-        left:8.3rem;
-        top: 7rem;
-        width: auto;
-    }
-  }
-  @media screen and (max-width:950px) and (min-width:551px){
-    .userMenu{
-        left: 72%;
-        top:5rem;
-        width: auto;
-    }
-  }
+}

@@ -3,8 +3,8 @@ import style from './Button.module.css'
 
 export default function Button(props) {
   return (
-    <div className='containerButton'>
-        <button role='boton'>
+    <div className={style.containerButton}>
+        <button className={style.boton} role='boton'>
             {
                 props.nombre
             }

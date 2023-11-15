@@ -1,0 +1,62 @@
+import React from 'react'
+import NavClient from '../../components/NavClient/NavClient'
+import Cards from '../../components/CardClient/CardsClient'
+import zapatos from '../../assets/zapatoniña.jpg'
+import zapato from '../../assets/zapatoniño.jpg';
+import Footer from '../../components/Footer/Footer';
+export default function Zapatos() {
+    const productos = [
+        { id: 91, marca: "Nike", imagen: zapato, modelo: "Nike ", precio: 2000,cantidad:1, star: 5 },
+        { id: 92, marca: "Nike", imagen: zapato, modelo: "Nike ", precio: 3000,cantidad:1, star: 4 },
+        { id: 93, marca: "Nike", imagen: zapato, modelo: "Nike ", precio: 1000,cantidad:1, star: 3 },
+        { id: 94, marca: "Nike", imagen: zapato, modelo: "Nike ", precio: 2300,cantidad:1, star: 2 },
+        { id: 95, marca: "Nike", imagen: zapato, modelo: "Nike ", precio: 2500,cantidad:1, star: 5 }
+        // Agrega más productos según sea necesario
+      ];
+      const productos2 = [
+        { id: 96, marca: "Nike", imagen: zapatos, modelo: "Nike ", precio: 2000,cantidad:1, star: 5 },
+        { id: 97, marca: "Nike", imagen: zapatos, modelo: "Nike ", precio: 3000,cantidad:1, star: 4 },
+        { id: 98, marca: "Nike", imagen: zapatos, modelo: "Nike ", precio: 1000,cantidad:1, star: 3 },
+        { id: 99, marca: "Nike", imagen: zapatos, modelo: "Nike ", precio: 2300,cantidad:1, star: 2 },
+        { id: 100, marca: "Nike", imagen: zapatos, modelo: "Nike ", precio: 2500,cantidad:1, star: 5 }
+        // Agrega más productos según sea necesario
+      ];
+  return (
+    <div style={{display:'flex', flexDirection:'column', width:'100%', margin:'auto'}}>
+        <NavClient />
+
+        <div style={{display:'flex', flexDirection:'column', width:'80%',margin:'auto',marginTop:'2%'}}>
+        <h3 style={{fontFamily:'Poppins',marginBottom:'2%'}}>Niños</h3>
+        <div style={{display:'flex', width:'100%',margin:'auto',flexWrap:'wrap'}}>
+        {productos.map(producto => (
+          <Cards
+            key={producto.id}
+            id={producto.id}
+            marca={producto.marca}
+            imagen={producto.imagen}
+            modelo={producto.modelo}
+            precio={producto.precio}
+            stars={producto.star}
+          />
+        ))}
+        </div>
+        <h3 style={{fontFamily:'Poppins',marginBottom:'2%'}}>Niñas</h3>
+        <div style={{display:'flex', width:'100%',margin:'auto',flexWrap:'wrap'}}>
+        {productos2.map(producto => (
+          <Cards
+            key={producto.id}
+            id={producto.id}
+            marca={producto.marca}
+            imagen={producto.imagen}
+            modelo={producto.modelo}
+            precio={producto.precio}
+            stars={producto.star}
+          />
+        ))}
+        </div>
+        </div>
+        <Footer/>
+    </div>
+  )
+}
+
