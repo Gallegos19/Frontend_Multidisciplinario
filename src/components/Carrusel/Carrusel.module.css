@@ -15,7 +15,7 @@ p{
     flex-wrap: wrap;
     user-select: none;
 }
-.imageContainer{
+.imageContainer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,17 +25,17 @@ p{
     margin-right: 5%;
     margin-bottom: 2%;
     margin-top: 4%;
-    
-}
-
-.imageContainer img{
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .imageContainer img {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 10rem;
-    
-
-}
+    transition: transform 0.5s ease-in-out;
+  }
+  
 
 .imageContainer img:hover {
     transform: scale(1.1);
@@ -84,6 +84,7 @@ transform: scale(1.1);
 }
 
 
+
 @media screen and (max-width:550px) {
     .containerCarrusel{
         width: 95%;
@@ -111,11 +112,11 @@ transform: scale(1.1);
 
     .tennisDerecha{
         width: 2.5rem;
-        margin-left: 5rem;
+        margin-left: 9rem;
     }
     .tennisIzquierda{
         width: 2.5rem;
-        margin-right: 5rem;
+        margin-right: 9rem;
         
     }
 }

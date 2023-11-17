@@ -21,19 +21,39 @@ export default function Carrusel({ imagenes }) {
   const [marca, setMarca] = useState(imagenes[0].marca);
   const [modelo, setModelo] = useState(imagenes[0].modelo);
 
-  const handlePrevClick = () => {
-    const newIndex = currentIndex === 0 ? imagenes.length - 1 : currentIndex - 1;
-    setCurrentIndex(newIndex);
-    setMarca(imagenes[newIndex].marca);
-    setModelo(imagenes[newIndex].modelo);
-  };
+ const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const handleNextClick = () => {
-    const newIndex = currentIndex === imagenes.length - 1 ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
-    setMarca(imagenes[newIndex].marca);
-    setModelo(imagenes[newIndex].modelo);
+useEffect(() => {
+  const intervalId = setInterval(() => {
+    setIsTransitioning(true);
+    handleNextClick();
+  }, 3000);
+
+  return () => {
+    clearInterval(intervalId);
   };
+}, [currentIndex]);
+
+const handlePrevClick = () => {
+  setIsTransitioning(true);
+  const newIndex = currentIndex === 0 ? imagenes.length - 1 : currentIndex - 1;
+  setCurrentIndex(newIndex);
+  setMarca(imagenes[newIndex].marca);
+  setModelo(imagenes[newIndex].modelo);
+};
+
+const handleNextClick = () => {
+  setIsTransitioning(true);
+  const newIndex = currentIndex === imagenes.length - 1 ? 0 : currentIndex + 1;
+  setCurrentIndex(newIndex);
+  setMarca(imagenes[newIndex].marca);
+  setModelo(imagenes[newIndex].modelo);
+};
+
+const handleTransitionEnd = () => {
+  setIsTransitioning(false);
+};
+
 
   const handleImageClick = () => {
     const data = {
@@ -63,25 +83,24 @@ export default function Carrusel({ imagenes }) {
   }, [currentIndex]);
 
   return (
-    <div className={style.containerCarrusel}>
+    <div className={`${style.containerCarrusel} ${isTransitioning ? style.sliding : ''}`}>
       <img
         src={tennisIzquierda}
         className={style.tennisIzquierda}
         alt=""
         onClick={handlePrevClick}
       />
-      
-      <p className={style.marca}>
-        {marca}
-      </p>
-
-      <div className={style.imageContainer}>
-        <img src={imagenActual.imagen} alt="" onClick={handleImageClick} />
-      </div>
-
-      <p className={style.modelo}>
-        {modelo}
-      </p>
+  
+      <p className={style.marca}>{marca}</p>
+  
+      <div
+      className={`${style.imageContainer} ${isTransitioning ? `${style.sliding} ${style.transitioning}` : ''}`}
+      onTransitionEnd={handleTransitionEnd}
+    >
+      <img src={imagenActual.imagen} alt="" onClick={handleImageClick} />
+    </div>
+  
+      <p className={style.modelo}>{modelo}</p>
       <img
         src={tennisDerecha}
         className={style.tennisDerecha}

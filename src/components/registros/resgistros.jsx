@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Style from "./registros.module.css";
 import Contenido from "../CardsAdmin/cards";
-
+import { FaRegEdit } from "react-icons/fa";
 export default function Registros() {
   const [cards, setCards] = useState([
     { marca: "Nike", modelo: "Air Force", cantidad: 1, precio: "$150" },

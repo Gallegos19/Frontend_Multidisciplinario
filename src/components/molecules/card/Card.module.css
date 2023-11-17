@@ -52,8 +52,10 @@
     margin: auto;
     width: 100%;
     margin-bottom: 3%;
+    justify-content: space-between;
     
 }
 .buton svg{
     cursor: pointer;
+    
 }
