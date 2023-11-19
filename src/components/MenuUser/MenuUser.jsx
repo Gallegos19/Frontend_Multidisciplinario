@@ -58,10 +58,10 @@ const UserMenu = ({ nombre }) => {
         <span>{nombre}</span>
       </div>
       <div className={style.userActions}>
-        <button onClick={handleAddToCart}>
+        {/* <button onClick={handleAddToCart}>
           <BiCart size={25} color="black" />
           <a>Carrito</a>
-        </button>
+        </button> */}
         <button onClick={() => navigate("/login")}>
           <BiUserCircle size={25} color="black" />
           <a>Iniciar Sesión</a>
@@ -75,7 +75,7 @@ const UserMenu = ({ nombre }) => {
           <a>Ayuda</a>
         </button>
       </div>
-      <CartModal isOpen={isCartModalOpen} onClose={() => setCartModalOpen(false)} />
+      {/* <CartModal isOpen={isCartModalOpen} onClose={() => setCartModalOpen(false)} /> */}
     </div>
   );
 };

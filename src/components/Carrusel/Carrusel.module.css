@@ -19,7 +19,7 @@ p{
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: rotate(-45deg);
+    transform: rotate(-35deg);
     width: 13rem;
     margin-left: 5%;
     margin-right: 5%;
@@ -44,9 +44,7 @@ p{
 transform: scaleX(-1) !important;
 transform: scale(1.1);
 }
-/*.tennisDerecha:hover{
-    transform: scale(1.1);
-}*/
+
 .tennisDerecha{
     display: flex;
     width: 3rem;

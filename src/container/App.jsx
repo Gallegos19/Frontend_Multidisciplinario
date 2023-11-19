@@ -10,13 +10,10 @@ import CartProvider from "../context/CartContext";
 import Vender from "../pages/VenderAdmin/Vender";
 import InventarioAdmin from "../pages/InventarioAdmin/inventarioAdmin";
 import Tennis from "../pages/caballero/Tennis";
-import Zapatos from "../pages/caballero/Zapatos";
-import Sandalias from "../pages/caballero/Sandalias";
-import Botas from "../pages/caballero/Botas";
 import TennisDama from "../pages/dama/Tennis";
 import ZapatosDama from "../pages/dama/Zapatos";
 import SandaliasDama from "../pages/dama/Sandalias";
-import Tacones from "../pages/dama/Tacones";
+import Tacones from "../pages/Tacones/Tacones";
 import TennisNinos from "../pages/ninos/Tennis";
 import ZapatosNinos from "../pages/ninos/Zapatos";
 import SandaliasNinos from "../pages/ninos/Sandalias";
@@ -24,13 +21,25 @@ import Nike from "../pages/marcas/Nike";
 import Puma from "../pages/marcas/Puma";
 import Adidas from "../pages/marcas/Adidas";
 import Otros from "../pages/marcas/Otros";
+import Marcas from "../pages/marcas/Marcas";
+import Botas from "../pages/Botas/Botas";
 import Especifica from "../pages/Especifica/Especifica";
+import Sandalias from "../pages/Sandalias/Sandalias";
+import Zapatos from '../pages/Zapatos/Zapatos';
+import Tenis from "../pages/Tenis/Tenis";
+
 function App() {
   return (
     <BrowserRouter>
       <CartProvider>
         <Routes>
           <Route path="/" element={<HomeClient />} />
+          <Route path="/marcas/:nombreMarca" element={<Marcas />} />
+          <Route path="/botas/:genero" element={<Botas />} />     
+          <Route path="/sandalias/:genero" element={<Sandalias />} />   
+          <Route path="/tenis/:genero" element={<Tenis />} />  
+          <Route path="/tacones/:genero" element={<Tacones />} />
+          <Route path="/zapatos/:genero" element={<Zapatos />} />   
           <Route path="/especifica" element={<Especifica />} />
           <Route path="/marcas/nike" element={<Nike />} />
           <Route path="/marcas/puma" element={<Puma />} />

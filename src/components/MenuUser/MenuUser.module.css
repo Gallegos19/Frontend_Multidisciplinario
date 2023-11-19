@@ -1,11 +1,11 @@
 .userMenu {
   display: flex;
   flex-direction: column;
-  width: auto; /* Ajusta el ancho del menú desplegable según tus necesidades */
+  width: auto;
   background-color: #fff; /* Color de fondo del menú */
   position: absolute;
-  top: 16%;
-  left: 84%;
+  top: 13%;
+  left: 90%;
   gap: 5%;
   margin: auto;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); /* Sombra del menú */
@@ -62,14 +62,21 @@ button{
 }
 @media screen and (max-width:550px){
   .userMenu{
-      left:8.3rem;
-      top: 7rem;
+      left:60%;
+      top: 7.3rem;
       width: auto;
   }
 }
-@media screen and (max-width:950px) and (min-width:551px){
+@media screen and (max-width:799px) and (min-width:551px){
   .userMenu{
-      left: 72%;
+      left: 78%;
+      top:4.5rem;
+      width: auto;
+  }
+}
+@media screen and (max-width:1180px) and (min-width:800px){
+  .userMenu{
+      left: 86%;
       top:5rem;
       width: auto;
   }

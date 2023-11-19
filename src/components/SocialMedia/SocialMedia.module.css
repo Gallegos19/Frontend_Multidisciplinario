@@ -83,8 +83,9 @@
         padding: 0;
     }
     .socialContainer{
-        width: 30px;
+        width: 28px;
     }
+  
   }
   @media screen and (max-width:950px) and (min-width:700px) {
     .card{ 
@@ -94,4 +95,5 @@
     .socialContainer{
         width: 40px;
     }
+
   }
