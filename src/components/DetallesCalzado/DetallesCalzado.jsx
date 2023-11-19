@@ -50,13 +50,13 @@ export default function DetallesCalzado(props) {
       if(tallaSeleccionada<1 ){
         toast.error('Seleccione una talla por favor', {
           position: toast.POSITION.TOP_RIGHT,
-          autoClose: 5000,
+          autoClose: 2000,
         });
      
       }else if(number<1){
         toast.error('Seleccione la cantidad por favor', {
           position: toast.POSITION.TOP_RIGHT,
-          autoClose: 5000,
+          autoClose: 2000,
         });
       } else if (tallaSeleccionada && number > 0) {
         const item = {
@@ -80,7 +80,7 @@ export default function DetallesCalzado(props) {
       // Muestra la notificación de fallo
       toast.error('Error al añadir el producto al carrito. Por favor, inténtalo de nuevo.', {
         position: toast.POSITION.TOP_RIGHT,
-        autoClose: 5000,
+        autoClose: 2000,
       });
     }
   };

@@ -13,7 +13,7 @@
     display: flex;
     justify-content: left;
     align-items: center;
-    margin-left: 5%;
+    margin-left: 1%;
    
 }
 
@@ -46,16 +46,44 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 5%;
+    margin-right: 2%;
 }
 .iconUser{
     display: flex;
     align-items: center;
     justify-self: center;
     margin-right: 5%;
+    
+}
+
+.notis{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
 }
 
 
+.contenedorCarro {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column; 
+    align-items: center;/* Alinea los elementos al extremo derecho del contenedor */
+  }
+  
+  .contador {
+    margin-left: 27px;
+    margin-bottom: -70%; /* Agrega un margen izquierdo para separar el contador del ícono de carrito */
+  }
+  
+  .iconUser {
+    margin-left: 0px; /* Agrega un margen izquierdo para separar el ícono de carrito del ícono de usuario */
+    cursor: pointer;
+  }
+  
+  /* ... Otros estilos ... */
+  
 .menu{
     display: flex;
     align-items: center;
@@ -68,6 +96,20 @@ a{
 /* NavAdmin.module.css */
 .activeMenu {
     font-weight: bold;
+  }
+
+
+/* Agrega estilos para la notificación del carrito */
+.cartNotification {
+    position: fixed;
+    top: 70px; /* Ajusta la posición según tu diseño */
+    right: 20px; /* Ajusta la posición según tu diseño */
+    background-color: #4caf50; /* Color de fondo verde */
+    color: white; /* Texto en color blanco */
+    padding: 15px;
+    border-radius: 5px;
+    display: none;
+    z-index: 999; /* Ajusta la posición z según sea necesario */
   }
   
   
@@ -86,7 +128,8 @@ a{
     .iconUser{
         margin-right: 0;
     }
-    .iconUser svg{
+     svg{
         width: 2rem;
     }
+
 }
