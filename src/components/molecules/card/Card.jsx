@@ -44,11 +44,7 @@ const Card = (props) => {
   return (
     <div className={style.containerCard}>
       <div className="tenis">
-<<<<<<< HEAD
-        <Imagen width="10" imagen={imagen} />
-=======
       <img style={{width:'200px',height:'200px', display:'flex', margin:'auto', justifyContent:'center', alignItems: 'center',borderRadius:'5px', padding:'20px'}} src={imagen} />
->>>>>>> origin/PagesAdmin
       </div>
       <div className={style.informacion}>
         {isEditing ? (

@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 // InventarioAdmin.js
->>>>>>> origin/PagesAdmin
 import React, { useState, useEffect } from "react";
 import Style from "./inventarioAdmin.module.css";
 import NavAdmin from "../../components/NavAdmin/NavAdmin";
@@ -23,13 +20,8 @@ export default function InventarioAdmin() {
       marca: "",
       modelo: "",
       cantidad: 1,
-<<<<<<< HEAD
-      talla: 25,
-      precio: 2500,
-=======
       talla: "",
       precio: "",
->>>>>>> origin/PagesAdmin
       idCliente: 2132,
       imagen: tennis,
     });
@@ -40,10 +32,6 @@ export default function InventarioAdmin() {
   };
 
   const handleChange = (e) => {
-<<<<<<< HEAD
-    const { name, value } = e.target;
-    setNuevoProducto({ ...nuevoProducto, [name]: value });
-=======
     const { name, value, type } = e.target;
 
     if (type === "file") {
@@ -55,7 +43,6 @@ export default function InventarioAdmin() {
     } else {
       setNuevoProducto({ ...nuevoProducto, [name]: value });
     }
->>>>>>> origin/PagesAdmin
   };
 
   const agregarProducto = () => {
@@ -77,15 +64,9 @@ export default function InventarioAdmin() {
     const nuevosProductos = productos.map((producto) =>
       producto.marca === marca
         ? {
-<<<<<<< HEAD
-          ...producto,
-          productos: producto.productos.filter((prod) => prod.id !== id),
-        }
-=======
             ...producto,
             productos: producto.productos.filter((prod) => prod.id !== id),
           }
->>>>>>> origin/PagesAdmin
         : producto
     );
     setProductos(nuevosProductos);
@@ -95,19 +76,11 @@ export default function InventarioAdmin() {
     const nuevosProductos = productos.map((producto) =>
       producto.marca === marca
         ? {
-<<<<<<< HEAD
-          ...producto,
-          productos: producto.productos.map((prod) =>
-            prod.id === id ? { ...prod, ...productoEditado } : prod
-          ),
-        }
-=======
             ...producto,
             productos: producto.productos.map((prod) =>
               prod.id === id ? { ...prod, ...productoEditado } : prod
             ),
           }
->>>>>>> origin/PagesAdmin
         : producto
     );
     setProductos(nuevosProductos);
@@ -119,19 +92,11 @@ export default function InventarioAdmin() {
         <NavAdmin />
         <div className={Style.contenedorCard}>
           <div className={Style.bt}>
-<<<<<<< HEAD
-            <button className={Style.agregar} onClick={abrirFormulario}>Agregar Producto</button>
-
-          </div>
-
-
-=======
             <button className={Style.agregar} onClick={abrirFormulario}>
               Agregar Producto
             </button>
           </div>
 
->>>>>>> origin/PagesAdmin
           <br />
           <div className={Style.formularioContainer}>
             {nuevoProducto && (
@@ -163,16 +128,12 @@ export default function InventarioAdmin() {
                   <label>
                     <br /> <br />
                     Cantidad:
-<<<<<<< HEAD
-                    <input type="number" name="cantidad" value={nuevoProducto.cantidad} onChange={handleChange} />
-=======
                     <input
                       type="number"
                       name="cantidad"
                       value={nuevoProducto.cantidad}
                       onChange={handleChange}
                     />
->>>>>>> origin/PagesAdmin
                   </label>
                   <label>
                     Talla:
@@ -182,13 +143,10 @@ export default function InventarioAdmin() {
                     Precio:
                     <input type="number" name="precio" value={nuevoProducto.precio} onChange={handleChange} />
                   </label>
-<<<<<<< HEAD
-=======
                   <label>
                     Imagen:
                     <input type="file" name="imagen" onChange={handleChange} />
                   </label>
->>>>>>> origin/PagesAdmin
                   <button type="button" onClick={agregarProducto}>
                     Agregar
                   </button>
@@ -201,25 +159,6 @@ export default function InventarioAdmin() {
           </div>
 
           {productos.map(({ marca, productos }) => (
-<<<<<<< HEAD
-            <div key={marca} className={Style.contenido}>
-              <h3>{marca}</h3>
-              <div className={Style.cards}>
-                {productos.map((producto) => (
-                  <Card
-                    key={producto.id}
-                    marca={producto.marca}
-                    modelo={producto.modelo}
-                    cantidad={producto.cantidad}
-                    talla={producto.talla}
-                    precio={producto.precio}
-                    idCliente={producto.idCliente}
-                    imagen={producto.imagen}
-                    onEliminar={() => eliminarProducto(marca, producto.id)}
-                    onEditar={(productoEditado) => editarProducto(marca, producto.id, productoEditado)}
-                  />
-                ))}
-=======
           <div key={marca} className={Style.contenido}>
             <h3>{marca}</h3>
             <div className={Style.cards}>
@@ -231,7 +170,6 @@ export default function InventarioAdmin() {
                   onEditar={(productoEditado) => editarProducto(marca, producto.id, productoEditado)}
                 />
               ))}
->>>>>>> origin/PagesAdmin
               </div>
             </div>
           ))}
