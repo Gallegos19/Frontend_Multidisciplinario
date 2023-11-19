@@ -55,6 +55,69 @@
     justify-content: space-between;
     
 }
+
+.container {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+    position: fixed;
+    background-color: white;
+    width: 20rem;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+      z-index: 1000;
+  }
+  
+  .label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .info2 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .buttonContainer {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .saveButton,
+  .cancelButton {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .saveButton {
+    background-color: #4caf50;
+    color: #fff;
+  }
+  
+  .cancelButton {
+    background-color: #f44336;
+    color: #fff;
+  }
+  
+
 .buton svg{
     cursor: pointer;
     
