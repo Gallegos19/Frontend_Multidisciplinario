@@ -1,0 +1,120 @@
+.contenedor {
+    background-color: white;
+    width: 35vw;
+    height: 12vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    justify-content: center; 
+    
+}
+
+.contenido {
+    display: flex;
+    gap: 40px;
+    align-items: center; 
+    justify-content: center; 
+}
+.cantidad{
+    display: flex;
+    justify-content: center;
+    width: 70px;
+}
+
+
+img {
+    display: flex;
+    width: 15%;
+    margin-bottom: 5%;
+    
+}
+
+
+@media screen and (max-width:1024px) {
+    .contenedor {
+        background-color: white;
+        width: 45vw;
+        height: 10vh;
+        display: flex;
+        flex-direction: row;
+        align-items: center; 
+        justify-content: flex-end; 
+        
+    }
+     .contenido {
+        display: flex;
+        gap: 2em;
+        align-items: center; 
+        justify-content: center; 
+    }
+}   
+@media screen and (min-width: 480px) and (max-width: 912px) {
+    .contenedor {
+        background-color: white;
+        width: 80vw;
+        height: 10vh;
+        display: flex;
+        flex-direction: row;
+        align-items: center; 
+        justify-content: center; 
+        
+    }
+    .contenido {
+        display: flex;
+        gap: 4em;
+        align-items: center; 
+        justify-content: center; 
+    }
+    .cantidad{
+        display: flex;
+        justify-content: center;
+        width: 70px;
+    }
+
+    img {
+        display: flex;
+        width: 10%;
+        margin-bottom: 5%;
+        
+    }
+}
+
+@media screen and (min-width: 539px) and (max-width: 540px)  {
+    .contenido {
+        display: flex;
+        gap: 2em;
+        align-items: center; 
+        justify-content: center; 
+    }
+}
+
+@media screen and (max-width:480px) {
+    .contenedor {
+        background-color: white;
+        width: 80vw;
+        height: 10vh;
+        display: flex;
+        flex-direction: row;
+        align-items: center; 
+        justify-content: center; 
+        
+    }
+    .contenido {
+        display: flex;
+        gap: 10px;
+        align-items: center; 
+        justify-content: center; 
+    }
+    .cantidad{
+        display: flex;
+        justify-content: center;
+        width: 70px;
+    }
+
+    img {
+        display: flex;
+        width: 10%;
+        margin-bottom: 5%;
+        
+    }
+}

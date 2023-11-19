@@ -1,0 +1,135 @@
+.containerNav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+    margin: auto;
+    box-shadow: 0px 1px 0px 0px black;
+}
+.logo{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-left: 1%;
+   
+}
+
+.logo img{
+    display: flex;
+    width: 7rem;
+    border-radius: 5px;
+}
+.logo img:hover{
+    transform: scale(1.1);
+
+}
+
+
+a{
+    text-decoration: none;
+    color: black;
+    font-size: 1.3rem;
+    font-family: 'Poppins';
+    margin: auto;
+    width: auto;
+}
+.a:hover{
+    box-shadow: 0px 1px 0px black;}
+.menu a:hover{
+    box-shadow: 0px 1px 0px black;
+
+}
+.buscador{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 2%;
+}
+.iconUser{
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    margin-right: 5%;
+    
+}
+
+.notis{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+
+.contenedorCarro {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column; 
+    align-items: center;/* Alinea los elementos al extremo derecho del contenedor */
+  }
+  
+  .contador {
+    margin-left: 27px;
+    margin-bottom: -70%; /* Agrega un margen izquierdo para separar el contador del ícono de carrito */
+  }
+  
+  .iconUser {
+    margin-left: 0px; /* Agrega un margen izquierdo para separar el ícono de carrito del ícono de usuario */
+    cursor: pointer;
+  }
+  
+  /* ... Otros estilos ... */
+  
+.menu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    flex-direction: column;
+    width: auto;
+    
+}
+/* NavAdmin.module.css */
+.activeMenu {
+    font-weight: bold;
+  }
+
+
+/* Agrega estilos para la notificación del carrito */
+.cartNotification {
+    position: fixed;
+    top: 70px; /* Ajusta la posición según tu diseño */
+    right: 20px; /* Ajusta la posición según tu diseño */
+    background-color: #4caf50; /* Color de fondo verde */
+    color: white; /* Texto en color blanco */
+    padding: 15px;
+    border-radius: 5px;
+    display: none;
+    z-index: 999; /* Ajusta la posición z según sea necesario */
+  }
+  
+  
+@media screen and (max-width:950px) {
+    .logo{
+        justify-content: center;
+        margin-left: 0;
+    }
+    .logo img{
+        width: 4rem;
+    }
+    a{
+        font-size: 0.8rem;
+        margin-right: 1%;
+    }
+    .iconUser{
+        margin-right: 0;
+    }
+     svg{
+        width: 2rem;
+    }
+
+}

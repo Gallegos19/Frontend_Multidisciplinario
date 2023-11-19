@@ -1,0 +1,84 @@
+.containerRegister {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 25rem;
+  height: auto;
+  background-color: #ffff;
+  box-shadow: 1px 2px 2px 1px rgb(114, 113, 113);
+}
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 3%;
+}
+.inputdatos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 60%;
+}
+.inputdatos input {
+  display: flex;
+  width: 62%;
+}
+.inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.inputs input {
+  margin-bottom: 5%;
+  border-radius: 5px;
+}
+.boton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 2rem;
+  margin-bottom: 10%;
+}
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10%;
+  text-decoration: none;
+  color: #04235f;
+}
+@media screen and (max-width: 912px) and (min-width: 650px) {
+  .containerRegister {
+    height: auto;
+    flex-wrap: wrap;
+    margin-top: 15%;
+  }
+}
+@media screen and (max-width: 649px) {
+  .containerRegister {
+    width: 17rem;
+    height: auto;
+    margin-top: 15%;
+  }
+  .title {
+    margin-bottom: 0;
+  }
+  .inputdatos {
+    justify-content: center;
+    gap: 2rem;
+  }
+  .inputdatos input {
+    width: 60%;
+    margin-right: 4rem;
+  }
+}

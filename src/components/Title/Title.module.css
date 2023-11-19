@@ -1,0 +1,16 @@
+.containerTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+h1{
+    font-family: 'Poppins';
+    font-size: 2rem;
+}
+@media screen and (max-width: 650px){
+    h1{
+        font-size: 1.4rem;
+    }
+    
+}
