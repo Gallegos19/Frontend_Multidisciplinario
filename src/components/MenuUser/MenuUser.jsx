@@ -72,7 +72,7 @@ const UserMenu = ({ nombre }) => {
         </button>
         <button onClick={handleAddToCloseSesion}>
           <BiHelpCircle size={25} color="black" />
-          <a>Ayuda</a>
+          <a>Apartados</a>
         </button>
       </div>
       {/* <CartModal isOpen={isCartModalOpen} onClose={() => setCartModalOpen(false)} /> */}
