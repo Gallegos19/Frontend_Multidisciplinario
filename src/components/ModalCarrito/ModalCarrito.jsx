@@ -1,7 +1,7 @@
 // ModalCarrito.js
 import React, { useState, useEffect } from "react";
 import style from "./ModalCarrito.module.css";
-import { useCartContext } from "../../context/CartContext"; // Ajusta la ruta según la ubicación real de tu contexto
+import { useCartContext } from "../../context/CartContext";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa";
 import { RiSubtractLine } from "react-icons/ri";
@@ -10,9 +10,9 @@ import { CiSaveDown1 } from "react-icons/ci";
 const ModalCarrito = ({ isOpen, onClose }) => {
   const { cart, removeProduct, setCart } = useCartContext();
   const [total, setTotal] = useState(0);
+  const [isConfirmationModalOpen, setConfirmationModalOpen] = useState(false);
 
   useEffect(() => {
-    // Calcula el total cada vez que cambia el carrito
     const newTotal = cart.reduce((acc, producto) => {
       return acc + producto.precio * producto.cantidad;
     }, 0);
@@ -23,6 +23,20 @@ const ModalCarrito = ({ isOpen, onClose }) => {
   if (!isOpen) {
     return null;
   }
+
+  const handleGuardar = () => {
+    setConfirmationModalOpen(true);
+  };
+
+  const handleAceptarApartado = () => {
+    // Lógica para aceptar el apartado
+    setConfirmationModalOpen(false);
+  };
+
+  const handleRechazarApartado = () => {
+    // Lógica para rechazar el apartado
+    setConfirmationModalOpen(false);
+  };
 
   const handleRemoveFromCarrito = (id) => {
     removeProduct(id);
@@ -81,13 +95,20 @@ const ModalCarrito = ({ isOpen, onClose }) => {
               </li>
             ))}
             <div className={style.section}>
-          {" "}
-          <p>Total: ${total}</p>
-          <CiSaveDown1 size={'1.5rem'} className={style.save}/>
-        </div>
+              {" "}
+              <p>Total: ${total}</p>
+              <CiSaveDown1 size={"2rem"} className={style.save} onClick={handleGuardar}/>
+            </div>
           </ul>
         )}
-        
+
+        {isConfirmationModalOpen && (
+          <div className={style.confirmationModal}>
+            <p>¿Deseas guardar el apartado?</p>
+            <button className={style.buttonCerrar} onClick={handleAceptarApartado}>Aceptar</button>
+            <button className={style.buttonCerrar} onClick={handleRechazarApartado}>Rechazar</button>
+          </div>
+        )}
 
         <button className={style.buttonCerrar} onClick={onClose}>
           Cerrar

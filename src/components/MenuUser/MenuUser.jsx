@@ -1,17 +1,19 @@
 import React, { useState, useRef, useEffect } from "react";
-import { BiUserCircle, BiCart, BiUser, BiUserX, BiHelpCircle   } from "react-icons/bi";
+import { BiUserCircle, BiCart, BiUser, BiUserX, BiHelpCircle } from "react-icons/bi";
 import style from "./MenuUser.module.css"; // Agrega tus estilos CSS aquí
 import { useNavigate } from "react-router-dom";
+import CartModal from "../ModalCarrito/ModalCarrito"; // Importa el componente CartModal
 
 const UserMenu = ({ nombre }) => {
   const [showCartNotification, setShowCartNotification] = useState(false);
+  const [isCartModalOpen, setCartModalOpen] = useState(false);
   const menuRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         // Cerrar el menú cuando se hace clic fuera de él
-        setShowUserMenu(false);
+        setCartModalOpen(false);
       }
     };
 
@@ -31,16 +33,20 @@ const UserMenu = ({ nombre }) => {
     // Por ejemplo: addToCart(item);
     setShowCartNotification(true);
 
+    // Mostrar el modal del carrito
+    setCartModalOpen(true);
+
     // Ocultar la notificación después de un cierto período de tiempo (por ejemplo, 3 segundos)
     setTimeout(() => {
       setShowCartNotification(false);
     }, 3000);
   };
+
   const handleAddToSesion = (event) => {
     event.stopPropagation();
   };
 
-   const handleAddToCloseSesion = (event) => {
+  const handleAddToCloseSesion = (event) => {
     event.stopPropagation();
   };
 
@@ -52,23 +58,24 @@ const UserMenu = ({ nombre }) => {
         <span>{nombre}</span>
       </div>
       <div className={style.userActions}>
-        <button onClick={handleAddToCart}>
+        {/* <button onClick={handleAddToCart}>
           <BiCart size={25} color="black" />
           <a>Carrito</a>
-        </button>
+        </button> */}
         <button onClick={() => navigate("/login")}>
           <BiUserCircle size={25} color="black" />
-          <a>Iniciar Sesion</a>
+          <a>Iniciar Sesión</a>
         </button>
         <button onClick={handleAddToCloseSesion}>
           <BiUserX size={25} color="black" />
-          <a>Cerrar Sesion</a>
+          <a>Cerrar Sesión</a>
         </button>
         <button onClick={handleAddToCloseSesion}>
-        <BiHelpCircle  size={25} color="black" />
-          <a>Ayuda</a>
+          <BiHelpCircle size={25} color="black" />
+          <a>Apartados</a>
         </button>
       </div>
+      {/* <CartModal isOpen={isCartModalOpen} onClose={() => setCartModalOpen(false)} /> */}
     </div>
   );
 };
