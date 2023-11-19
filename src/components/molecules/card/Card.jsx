@@ -1,57 +1,30 @@
-<<<<<<< HEAD
-import React, { useState } from "react";
-=======
 import React, { useState, useEffect } from "react";
->>>>>>> origin/PagesAdmin
 import { BsTrash } from "react-icons/bs";
 import Imagen from "../../Imagen/Imagen";
 import Text from "../../Text/Text2";
 import style from "./Card.module.css";
 import { FaRegEdit } from "react-icons/fa";
 
-<<<<<<< HEAD
-export default function Card(props) {
-=======
 const Card = (props) => {
->>>>>>> origin/PagesAdmin
   const { id, marca, modelo, cantidad, talla, precio, idCliente, imagen, onEliminar, onEditar } = props;
   const [isEditing, setIsEditing] = useState(false);
   const [editedProduct, setEditedProduct] = useState({ marca, modelo, cantidad, talla, precio, idCliente, imagen });
 
-<<<<<<< HEAD
-=======
   useEffect(() => {
     setEditedProduct({ marca, modelo, cantidad, talla, precio, idCliente, imagen });
   }, [marca, modelo, cantidad, talla, precio, idCliente, imagen]);
 
->>>>>>> origin/PagesAdmin
   const handleEditClick = () => {
     setIsEditing(true);
   };
 
   const handleSaveClick = () => {
-<<<<<<< HEAD
-    onEditar(id, editedProduct);
-=======
     onEditar(editedProduct);
->>>>>>> origin/PagesAdmin
     setIsEditing(false);
   };
 
   const handleCancelClick = () => {
     setIsEditing(false);
-<<<<<<< HEAD
-    // Restaurar los valores originales si se cancela la edición
-    setEditedProduct({ marca, modelo, cantidad, talla, precio, idCliente, imagen });
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setEditedProduct((prevProduct) => ({
-      ...prevProduct,
-      [name]: value,
-    }));
-=======
   };
 
   const handleChange = (e) => {
@@ -66,7 +39,6 @@ const Card = (props) => {
     } else {
       setEditedProduct({ ...editedProduct, [name]: value });
     }
->>>>>>> origin/PagesAdmin
   };
 
   return (
@@ -81,34 +53,6 @@ const Card = (props) => {
       <div className={style.informacion}>
         {isEditing ? (
           <>
-<<<<<<< HEAD
-            <label>
-              Marca:
-              <input type="text" name="marca" value={editedProduct.marca} onChange={handleChange} />
-            </label>
-            <label>
-              Modelo:
-              <input type="text" name="modelo" value={editedProduct.modelo} onChange={handleChange} />
-            </label>
-            <div className={style.info2}>
-              <label>
-                Cantidad:
-                <input type="number" name="cantidad" value={editedProduct.cantidad} onChange={handleChange} />
-              </label>
-              <label>
-                Talla:
-                <input type="number" name="talla" value={editedProduct.talla} onChange={handleChange} />
-              </label>
-            </div>
-            <label>
-              Precio:
-              <input type="number" name="precio" value={editedProduct.precio} onChange={handleChange} />
-            </label>
-            <label>
-              IdCliente:
-              <input type="text" name="idCliente" value={editedProduct.idCliente} onChange={handleChange} />
-            </label>
-=======
             <div className={style.container}>
               <label className={style.label}>
                 Marca:
@@ -142,7 +86,6 @@ const Card = (props) => {
               </div>
             </div>
 
->>>>>>> origin/PagesAdmin
           </>
         ) : (
           <>
@@ -160,12 +103,6 @@ const Card = (props) => {
         <div className={style.buton}>
           {isEditing ? (
             <>
-<<<<<<< HEAD
-              <button onClick={handleSaveClick}>Guardar</button>
-              <button onClick={handleCancelClick}>Cancelar</button>
-=======
-
->>>>>>> origin/PagesAdmin
             </>
           ) : (
             <>
@@ -177,10 +114,6 @@ const Card = (props) => {
       </div>
     </div>
   );
-<<<<<<< HEAD
-}
-=======
 };
 
 export default Card;
->>>>>>> origin/PagesAdmin
