@@ -32,7 +32,7 @@ export default function Card(props) {
     // ...
 
     // Almacena el producto en el localStorage
-    localStorage.setItem('CardItem', JSON.stringify(data));
+    localStorage.setItem('CardItem', JSON.stringify(props));
 
     // Redirige a otra página
     navigate('/especifica');

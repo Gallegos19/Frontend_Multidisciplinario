@@ -23,7 +23,6 @@ const Register = () => {
 
     // Validación básica de los campos
     if (!nombre.trim() || !apellido.trim() || !email.trim() || !password.trim() || !confirmPassword.trim()) {
-
       toast.error('Por favor, complete todos los campos.', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,
@@ -51,7 +50,7 @@ const Register = () => {
 
     // Consumir la API para registrar al usuario
     try {
-      const response = await fetch('https://f2r4qdv2-8080.euw.devtunnels.ms/v1/Usuarios', {
+      const response = await fetch('http://localhost:8080/v1/Usuarios', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -68,17 +67,14 @@ const Register = () => {
       }
 
       // Usuario registrado con éxito
-      alert('Usuario registrado con éxito. ¡Inicie sesión para continuar!');
       toast.success('¡Usuario registrado con éxito. ¡Inicie sesión para continuar!', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 1000,
       });
       setTimeout(() => {
         // Redirect based on the user's role
-                 navigate('/');
-        
-      }, 2000); 
-  
+        navigate('/');
+      }, 2000);
     } catch (error) {
       console.error('Error al registrar el usuario:', error);
       toast.error('Error al registrar el usuario. Inténtelo nuevamente.', {
@@ -89,6 +85,7 @@ const Register = () => {
   };
 
   return (
+    <div>
     <form className={style.containerRegister} onSubmit={handleSubmit}>
       <div className={style.title}>
         <Title text='Registrarse' />
@@ -107,10 +104,12 @@ const Register = () => {
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
       </div>
-      <div className={style.boton} onClick={handleSubmit}>
+      <div className={style.boton}>
         <Button nombre='Registrar' type='submit' />
       </div>
     </form>
+    <ToastContainer />
+    </div>
   );
 };
 
