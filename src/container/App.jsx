@@ -16,6 +16,7 @@ import Especifica from "../pages/Especifica/Especifica";
 import Sandalias from "../pages/Sandalias/Sandalias";
 import Zapatos from '../pages/Zapatos/Zapatos';
 import Tenis from "../pages/Tenis/Tenis";
+import ApartadosClient from "../pages/ApartadosClient/ApartadosClient";
 
 function App() {
   return (
@@ -30,7 +31,8 @@ function App() {
           <Route path="/tacones/:genero" element={<Tacones />} />
           <Route path="/zapatos/:genero" element={<Zapatos />} />   
           <Route path="/especifica" element={<Especifica />} />
-  
+          <Route path="/apartado" element={<ApartadosClient />} />
+
           <Route path="/admin" element={<HomeAdmin />} />
           <Route path="/admin/vender" element={<Vender />} />
           <Route path="/admin/inventario" element={<InventarioAdmin />} />
