@@ -40,7 +40,7 @@ const UserMenu = () => {
       // Realiza la solicitud y actualiza la caché
       const fetchUserData = async () => {
         try {
-          const response = await fetch(`https://f2r4qdv2-8080.euw.devtunnels.ms/v1/Usuarios/${userId}`);
+          const response = await fetch(`http://localhost:8080/v1/Usuarios/${userId}`);
           const responseData = await response.json();
 
           if (responseData.data && responseData.data.length > 0) {
@@ -89,7 +89,7 @@ const UserMenu = () => {
             <span>Iniciar Sesión</span>
           </button>
         )}
-        <button onClick={handleAddToCloseSesion}>
+        <button onClick={() => navigate("/apartado")}>
           <IoBriefcaseOutline size={25} color="black" />
           <span>Apartados</span>
         </button>

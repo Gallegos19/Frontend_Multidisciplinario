@@ -2,6 +2,10 @@ import React from "react";
 import styles from "./Rating.module.css"; // Importa los estilos con CSS Modules
 
 const Rating = ({ ratingValue, id }) => {
+  // Verifica si ratingValue está definido
+  if (ratingValue === undefined) {
+    return null; // Si no está definido, no renderiza nada
+  }
 
   return (
     <div className={styles.rating}>
