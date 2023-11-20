@@ -18,6 +18,19 @@
   margin: auto;
   margin-bottom: 3%;
 }
+input{
+  border: none;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 1rem;
+  box-shadow: 1px 1px 1px  #ccc;
+  color:rgba(0, 0, 0, 0.5);
+font-family: 'Poppins';
+text-align:left;
+letter-spacing:0;
+}
 .inputdatos {
   display: flex;
   justify-content: space-between;

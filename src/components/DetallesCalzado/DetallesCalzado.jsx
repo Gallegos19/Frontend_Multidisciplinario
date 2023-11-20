@@ -47,6 +47,16 @@ export default function DetallesCalzado(props) {
 
   const addToCart = () => {
     try {
+      const token = localStorage.getItem('token');
+    if (!token) {
+      toast.error('Debe iniciar sesión para agregar productos al carrito', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+      });
+      // You can redirect the user to the login page or take appropriate action
+      // Example: navigate('/login');
+      return;
+    }
       if(tallaSeleccionada<1 ){
         toast.error('Seleccione una talla por favor', {
           position: toast.POSITION.TOP_RIGHT,
