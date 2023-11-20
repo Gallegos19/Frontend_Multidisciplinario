@@ -33,54 +33,64 @@ const Card = (props) => {
     if (type === "file") {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setEditedProduct({ ...editedProduct, imagen: reader.result });
+        setEditedProduct((prevProduct) => ({
+          ...prevProduct,
+          imagen: reader.result,
+        }));
       };
       reader.readAsDataURL(e.target.files[0]);
     } else {
-      setEditedProduct({ ...editedProduct, [name]: value });
+      setEditedProduct((prevProduct) => ({
+        ...prevProduct,
+        [name]: value,
+      }));
     }
   };
+
+
 
   return (
     <div className={style.containerCard}>
       <div className="tenis">
-      <img style={{width:'200px',height:'200px', display:'flex', margin:'auto', justifyContent:'center', alignItems: 'center',borderRadius:'5px', padding:'20px'}} src={imagen} />
+        <Imagen width="10" imagen={imagen} />
       </div>
       <div className={style.informacion}>
+
+
         {isEditing ? (
           <>
-            <div className={style.container}>
-              <label className={style.label}>
-                Marca:
-                <input type="text" name="marca" value={editedProduct.marca} onChange={handleChange} className={style.input} />
-              </label>
-              <label className={style.label}>
-                Modelo:
-                <input type="text" name="modelo" value={editedProduct.modelo} onChange={handleChange} className={style.input} />
-              </label>
-              <div className={style.info2}>
-                <label className={style.label}>
-                  Cantidad:
-                  <input type="number" name="cantidad" value={editedProduct.cantidad} onChange={handleChange} className={style.input} />
-                </label>
-                <label className={style.label}>
-                  Talla:
-                  <input type="number" name="talla" value={editedProduct.talla} onChange={handleChange} className={style.input} />
-                </label>
-              </div>
-              <label className={style.label}>
-                Precio:
-                <input type="number" name="precio" value={editedProduct.precio} onChange={handleChange} className={style.input} />
-              </label>
-              <label className={style.label}>
-                IdCliente:
-                <input type="text" name="idCliente" value={editedProduct.idCliente} onChange={handleChange} className={style.input} />
-              </label>
-              <div className={style.buttonContainer}>
-                <button onClick={handleSaveClick} className={style.saveButton}>Guardar</button>
-                <button onClick={handleCancelClick} className={style.cancelButton}>Cancelar</button>
-              </div>
-            </div>
+          <div className={style.container}>
+  <label className={style.label}>
+    Marca:
+    <input type="text" name="marca" value={editedProduct.marca} onChange={handleChange} className={style.input} />
+  </label>
+  <label className={style.label}>
+    Modelo:
+    <input type="text" name="modelo" value={editedProduct.modelo} onChange={handleChange} className={style.input} />
+  </label>
+  <div className={style.info2}>
+    <label className={style.label}>
+      Cantidad:
+      <input type="number" name="cantidad" value={editedProduct.cantidad} onChange={handleChange} className={style.input} />
+    </label>
+    <label className={style.label}>
+      Talla:
+      <input type="number" name="talla" value={editedProduct.talla} onChange={handleChange} className={style.input} />
+    </label>
+  </div>
+  <label className={style.label}>
+    Precio:
+    <input type="number" name="precio" value={editedProduct.precio} onChange={handleChange} className={style.input} />
+  </label>
+  <label className={style.label}>
+    IdCliente:
+    <input type="text" name="idCliente" value={editedProduct.idCliente} onChange={handleChange} className={style.input} />
+  </label>
+  <div className={style.buttonContainer}>
+    <button onClick={handleSaveClick} className={style.saveButton}>Guardar</button>
+    <button onClick={handleCancelClick} className={style.cancelButton}>Cancelar</button>
+  </div>
+</div>
 
           </>
         ) : (
@@ -96,18 +106,10 @@ const Card = (props) => {
           </>
         )}
 
-        <div className={style.buton}>
-          {isEditing ? (
-            <>
-
-            </>
-          ) : (
-            <>
-              <BsTrash size={"25px"} onClick={() => onEliminar(id)} />
-              <FaRegEdit size={'25px'} onClick={handleEditClick} />
-            </>
-          )}
-        </div>
+<div className={style.buton}>
+            <BsTrash size={"25px"} onClick={() => onEliminar(id)} />
+            <FaRegEdit size={'25px'} onClick={handleEditClick} />
+          </div>
       </div>
     </div>
   );
