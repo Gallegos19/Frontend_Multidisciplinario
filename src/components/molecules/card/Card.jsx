@@ -52,7 +52,7 @@ const Card = (props) => {
   return (
     <div className={style.containerCard}>
       <div className="tenis">
-        <Imagen width="10" imagen={imagen} />
+      <img style={{ width: `10rem`,height:'10em', display:'flex', margin:'auto',marginTop:'1vh', justifyContent:'center', alignItems: 'center',borderRadius:'5px' }} src={props.imagen} alt="" />
       </div>
       <div className={style.informacion}>
 
@@ -106,10 +106,17 @@ const Card = (props) => {
           </>
         )}
 
-<div className={style.buton}>
-            <BsTrash size={"25px"} onClick={() => onEliminar(id)} />
-            <FaRegEdit size={'25px'} onClick={handleEditClick} />
-          </div>
+        <div className={style.buton}>
+          {isEditing ? (
+            <>
+            </>
+          ) : (
+            <>
+              <BsTrash size={"25px"} onClick={() => onEliminar(id)} />
+              <FaRegEdit size={'25px'} onClick={handleEditClick} />
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

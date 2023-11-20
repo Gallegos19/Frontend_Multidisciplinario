@@ -42,7 +42,7 @@ export default function InventarioAdmin() {
 
   const abrirFormulario = () => {
     setNuevoProducto({
-      id: Date.now(),
+      id: Date.now(), // Utiliza un timestamp como ID único
       marca: "",
       modelo: "",
       cantidad: 1,
@@ -52,6 +52,7 @@ export default function InventarioAdmin() {
       imagen: tennis,
     });
   };
+  
 
   const cerrarFormulario = () => {
     setNuevoProducto(null);
@@ -97,6 +98,8 @@ export default function InventarioAdmin() {
       cerrarFormulario();
     }
   };
+
+
 
   const eliminarProducto = (marca, id) => {
     const nuevosProductos = productos.map((producto) =>
