@@ -17,6 +17,7 @@ import Sandalias from "../pages/Sandalias/Sandalias";
 import Zapatos from '../pages/Zapatos/Zapatos';
 import Tenis from "../pages/Tenis/Tenis";
 import ApartadosClient from "../pages/ApartadosClient/ApartadosClient";
+import NotFound from "../pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
           <Route path="/zapatos/:genero" element={<Zapatos />} />   
           <Route path="/especifica" element={<Especifica />} />
           <Route path="/apartado" element={<ApartadosClient />} />
-
+          <Route path="/notfound" element={<NotFound />}/>
           <Route path="/admin" element={<HomeAdmin />} />
           <Route path="/admin/vender" element={<Vender />} />
           <Route path="/admin/inventario" element={<InventarioAdmin />} />
