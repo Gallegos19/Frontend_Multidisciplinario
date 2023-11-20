@@ -3,23 +3,39 @@ import { BsTrash } from "react-icons/bs";
 import Imagen from "../../Imagen/Imagen";
 import Text from "../../Text/Text2";
 import style from "./Card.module.css";
+
 import { FaRegEdit } from "react-icons/fa";
 
-const Card = (props) => {
-  const { id, marca, modelo, cantidad, talla, precio, idCliente, imagen, onEliminar, onEditar } = props;
+const Card = ({ productoID, marca, modelo, inventario, talla, precio, urls, onEliminar, onEditar }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [editedProduct, setEditedProduct] = useState({ marca, modelo, cantidad, talla, precio, idCliente, imagen });
+  const [editedProduct, setEditedProduct] = useState({
+    productoID,
+    marca,
+    modelo,
+    inventario,
+    talla,
+    precio,
+    imagen: urls && urls.length > 0 ? urls[0] : '', // Tomar la primera URL del array
+  });
 
   useEffect(() => {
-    setEditedProduct({ marca, modelo, cantidad, talla, precio, idCliente, imagen });
-  }, [marca, modelo, cantidad, talla, precio, idCliente, imagen]);
+    setEditedProduct({
+      productoID,
+      marca,
+      modelo,
+      inventario,
+      talla,
+      precio,
+      imagen: urls && urls.length > 0 ? urls[0] : '', // Tomar la primera URL del array
+    });
+  }, [productoID, marca, modelo, inventario, talla, precio, urls]);
 
   const handleEditClick = () => {
     setIsEditing(true);
   };
 
   const handleSaveClick = () => {
-    onEditar(editedProduct);
+    onEditar(productoID, editedProduct);
     setIsEditing(false);
   };
 
@@ -47,62 +63,59 @@ const Card = (props) => {
     }
   };
 
-
+  const generateKey = (prefix) => `${prefix}-${productoID}`;
 
   return (
-    <div className={style.containerCard}>
+    <div key={generateKey("card")} className={style.containerCard}>
       <div className="tenis">
-      <img style={{ width: `10rem`,height:'10em', display:'flex', margin:'auto',marginTop:'1vh', justifyContent:'center', alignItems: 'center',borderRadius:'5px' }} src={props.imagen} alt="" />
+        <img
+          style={{
+            width: `10rem`,
+            height: "10em",
+            display: "flex",
+            margin: "auto",
+            marginTop: "1vh",
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: "5px",
+          }}
+          src={isEditing ? editedProduct.imagen : urls && urls.length > 0 ? urls[0] : ''}
+          alt=""
+        />
       </div>
       <div className={style.informacion}>
-
-
         {isEditing ? (
           <>
-          <div className={style.container}>
-  <label className={style.label}>
-    Marca:
-    <input type="text" name="marca" value={editedProduct.marca} onChange={handleChange} className={style.input} />
-  </label>
-  <label className={style.label}>
-    Modelo:
-    <input type="text" name="modelo" value={editedProduct.modelo} onChange={handleChange} className={style.input} />
-  </label>
-  <div className={style.info2}>
-    <label className={style.label}>
-      Cantidad:
-      <input type="number" name="cantidad" value={editedProduct.cantidad} onChange={handleChange} className={style.input} />
-    </label>
-    <label className={style.label}>
-      Talla:
-      <input type="number" name="talla" value={editedProduct.talla} onChange={handleChange} className={style.input} />
-    </label>
-  </div>
-  <label className={style.label}>
-    Precio:
-    <input type="number" name="precio" value={editedProduct.precio} onChange={handleChange} className={style.input} />
-  </label>
-  <label className={style.label}>
-    IdCliente:
-    <input type="text" name="idCliente" value={editedProduct.idCliente} onChange={handleChange} className={style.input} />
-  </label>
-  <div className={style.buttonContainer}>
-    <button onClick={handleSaveClick} className={style.saveButton}>Guardar</button>
-    <button onClick={handleCancelClick} className={style.cancelButton}>Cancelar</button>
-  </div>
-</div>
-
+            <div className={style.container}>
+              <label className={style.label}>
+                Marca:
+                <input type="text" name="marca" value={editedProduct.marca} onChange={handleChange} className={style.input} />
+              </label>
+              <label className={style.label}>
+                Modelo:
+                <input type="text" name="modelo" value={editedProduct.modelo} onChange={handleChange} className={style.input} />
+              </label>
+              <label className={style.label}>
+                Inventario:
+                <input type="number" name="inventario" value={editedProduct.inventario} onChange={handleChange} className={style.input} />
+              </label>
+              <div className={style.buttonContainer}>
+                <button onClick={handleSaveClick} className={style.saveButton}>
+                  Guardar
+                </button>
+                <button onClick={handleCancelClick} className={style.cancelButton}>
+                  Cancelar
+                </button>
+              </div>
+            </div>
           </>
         ) : (
           <>
             <Text text={`Marca: ${marca}`} />
             <Text text={`Modelo: ${modelo}`} />
-            <div className={style.info2}>
-              <Text text={`Cantidad: ${cantidad}`} />
-              <Text text={`Talla: ${talla}`} />
-            </div>
+            <Text text={`Inventario: ${inventario}`} />
+            <Text text={`Talla: ${talla}`} />
             <Text text={`Precio: $${precio}`} />
-            <Text text={`IdCliente: ${idCliente}`} />
           </>
         )}
 
@@ -112,8 +125,9 @@ const Card = (props) => {
             </>
           ) : (
             <>
-              <BsTrash size={"25px"} onClick={() => onEliminar(id)} />
+              <BsTrash size={"25px"} onClick={() => onEliminar(productoID)} />
               <FaRegEdit size={'25px'} onClick={handleEditClick} />
+
             </>
           )}
         </div>
