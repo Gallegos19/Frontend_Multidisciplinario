@@ -16,7 +16,7 @@ export default function Marcas() {
   const [data, setData] = useState([]);
   const [dataMujeres, setDataMujeres] = useState([]);
 
-  useEffect(() => {
+
     const fetchCalzadosData = async () => {
       try {
         const accessToken = localStorage.getItem("token");
@@ -61,7 +61,7 @@ export default function Marcas() {
         console.error("Error fetching data:", error);
       }
     };
-
+    useEffect(() => {
     fetchCalzadosData();
   }, [MARCAS]);
 
@@ -71,6 +71,7 @@ export default function Marcas() {
   }, [data, dataMujeres]);
 
   if (!Array.isArray(data) || data.length === 0) {
+    fetchCalzadosData();
     return (
       <div
         style={{

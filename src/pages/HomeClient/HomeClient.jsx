@@ -44,13 +44,13 @@ export default function HomeClient() {
         <div style={{ display: 'flex', width: '90%', margin: 'auto', flexWrap: 'wrap' }}>
           {productos.map((producto) => (
             <Cards
-              key={producto.id}
-              id={producto.id}
+              key={producto.productoID}
+              id={producto.productoID}
               imagen={producto.url_calzado}
               marca={producto.marca}
               modelo={producto.modelo}
               precio={producto.precio}
-              stars={producto.star}
+              stars={producto.calificacion}
             />
           ))}
         </div>

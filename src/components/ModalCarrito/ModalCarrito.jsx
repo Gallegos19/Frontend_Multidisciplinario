@@ -6,9 +6,11 @@ import { FaRegTrashCan } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa";
 import { RiSubtractLine } from "react-icons/ri";
 import { CiSaveDown1 } from "react-icons/ci";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ModalCarrito = ({ isOpen, onClose }) => {
-  const { cart, removeProduct, setCart } = useCartContext();
+  const { cart, removeProduct, setCart,clearCart } = useCartContext();
   const [total, setTotal] = useState(0);
   const [isConfirmationModalOpen, setConfirmationModalOpen] = useState(false);
 
@@ -28,52 +30,68 @@ const ModalCarrito = ({ isOpen, onClose }) => {
     setConfirmationModalOpen(true);
   };
 
-  const handleAceptarApartado = async() => {
-    // Lógica para aceptar el apartado
+  const handleAceptarApartado = async () => {
     setConfirmationModalOpen(false);
     const token = localStorage.getItem('token');
+    const idclient= localStorage.getItem('id');
+  
+    try {
+      // Enviar una solicitud para cada producto en el carrito
+      for (const producto of cart) {
+        const vigencia = new Date();
+      vigencia.setDate(vigencia.getDate() + 3);
+
       const requestBody = {
-        productoId: 3,
-        cantidad: 2,
-        precioUnitario: 20.0,
-        subTotal: 50.0,
-        descuento: 5,
-        total: 47.5,
-        clienteId: 3,
-        vigencia: "2023-12-01T12:00:00Z"
-      };
-    
-      try {
-        // Make the API request
+        productoId: producto.id,
+        cantidad: producto.cantidad,
+        precioUnitario: producto.precio,
+        subTotal: producto.precio * producto.cantidad,
+        descuento: 0, // Puedes ajustar esto según tus necesidades
+        total: producto.precio * producto.cantidad,
+        clienteId: idclient, // Cambia esto según tus necesidades
+        vigencia: vigencia.toISOString() 
+        };
+  
         const response = await fetch('http://localhost:8080/v1/Apartados', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            // Replace 'YOUR_ACCESS_TOKEN' with the actual token
             'Authorization': `Bearer ${token}`
           },
           body: JSON.stringify(requestBody)
         });
-    
+  
         if (response.ok) {
-          // Handle success
-          console.log('Apartado guardado exitosamente');
-          // Additional logic as needed after a successful request
+          console.log(`Apartado para ${producto.nombre} guardado exitosamente`);
+         
+          // Puedes agregar lógica adicional aquí después de una solicitud exitosa
         } else {
-          // Handle error
-          console.error('Error al guardar el apartado:', response.statusText);
-          // Additional error handling as needed
+          console.error(`Error al guardar el apartado para ${producto.nombre}:`, response.statusText);
+          toast.error(`Error al guardar el apartado para ${producto.nombre}:`, {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 2000,
+          });
+          // Puedes manejar el error de alguna manera
         }
-      } catch (error) {
-        console.error('Error:', error.message);
-        // Additional error handling as needed
-      } finally {
-        // Close the confirmation modal, regardless of success or failure
-        setConfirmationModalOpen(false);
       }
-
-    
+    } catch (error) {
+      console.error('Error:', error.message);
+      toast.error(`Error al guardar el apartado`, {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+      });
+      // Puedes manejar el error de alguna manera
+    } finally {
+      toast.success(`Apartado guardado exitosamente`, {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+      });
+      setTimeout(() => {
+        clearCart();
+      }, 1400);
+    }
   };
+  
 
   const handleRechazarApartado = () => {
     // Lógica para rechazar el apartado
@@ -85,17 +103,37 @@ const ModalCarrito = ({ isOpen, onClose }) => {
   };
 
   const handleEditCantidad = (id, newCantidad) => {
-    if (newCantidad >= 1) {
-      const updatedCarrito = cart.map((producto) => {
-        if (producto.id === id) {
-          return { ...producto, cantidad: newCantidad };
-        }
-        return producto;
-      });
+    const maxCantidad = 3; // Establece el máximo permitido
+  
+    // Obtén el producto actual del carrito
+    const productoActual = cart.find((producto) => producto.id === id);
+  
+    // Asegúrate de que la nueva cantidad no sea menor que 1
+    newCantidad = Math.max(1, newCantidad);
+  
+    const updatedCarrito = cart.map((producto) => {
+      if (producto.id === id) {
+        return { ...producto, cantidad: newCantidad };
+      }
+      return producto;
+    });
+  
+    // Verifica si la cantidad total en el carrito supera el límite
+    const totalCarrito = updatedCarrito.reduce((acc, producto) => {
+      return acc + producto.cantidad;
+    }, 0);
+  
+    if (totalCarrito <= maxCantidad) {
+      // Si la nueva cantidad es menor o igual al máximo permitido, actualiza el carrito
       setCart(updatedCarrito);
+    } else {
+      toast.error(`Solo puede apartar máximo 3 calzados`, {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+      });
     }
   };
-
+  
   return (
     <div className={style.modalOverlay} onClick={onClose}>
       <div className={style.modalContent} onClick={(e) => e.stopPropagation()}>
@@ -156,6 +194,7 @@ const ModalCarrito = ({ isOpen, onClose }) => {
           Cerrar
         </button>
       </div>
+      <ToastContainer />
     </div>
   );
 };

@@ -33,12 +33,13 @@ p{
     justify-content: center;
     align-items: center;
     width: 10rem;
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.7s ease-in-out;
   }
   
 
 .imageContainer img:hover {
-    transform: scale(1.1);
+    width: 11rem;
+    transform: rotate(25deg);
 }
 .tenis img:hover {
     transform: scale(1.1);
@@ -63,7 +64,16 @@ transform: scale(1.1);
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -1%;
+    margin-top: 1%;
+    width: 5rem;
+}
+.contenidotenis{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    height: 12rem;
+    margin: auto;
 }
 .modelo{
     display: flex;
@@ -86,6 +96,14 @@ transform: scale(1.1);
 
 
 @media screen and (max-width:550px) {
+    .contenidotenis{ 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 70%;
+        height: 12rem;
+        margin: auto;
+    }
     .containerCarrusel{
         width: 95%;
     }
@@ -106,17 +124,25 @@ transform: scale(1.1);
     }
 }
 @media screen and (max-width:1030px ) and (min-width:551px) {
+    .contenidotenis{ 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 65%;
+        height: 12rem;
+        margin: auto;
+    }
     .containerCarrusel{
         width: 95%;
     }
 
     .tennisDerecha{
-        width: 2.5rem;
-        margin-left: 9rem;
+        width: 2.2rem;
+        margin-left: 8rem;
     }
     .tennisIzquierda{
-        width: 2.5rem;
-        margin-right: 9rem;
+        width: 2.2rem;
+        margin-right: 8rem;
         
     }
 }

@@ -25,7 +25,6 @@ export default function DetallesCalzado({
   const [mostrarContainer2, setMostrarContainer2] = useState(false);
   const [number, setNumber] = useState(0);
   const [tallaSeleccionada, setTallaSeleccionada] = useState(null);
-  console.log(tallas);
   // const tallas = props.tallas ? props.tallas.map(Number) : [];
   const [productData, setProductData] = useState({});
   const { clearCart, isInCart, removeProduct } = useCartContext(); // Accede a las funciones del contexto
@@ -46,13 +45,13 @@ export default function DetallesCalzado({
   };
 
   const incrementValue = () => {
-    setNumber((prevNumber) => prevNumber + 1);
+    setNumber((prevNumber) => (prevNumber < 3 ? prevNumber + 1 : prevNumber));
   };
-
+  
   const decrementValue = () => {
     setNumber((prevNumber) => (prevNumber > 0 ? prevNumber - 1 : prevNumber));
   };
-
+  
   const handleTalla = (talla) => {
     setTallaSeleccionada(talla);
   };
@@ -234,7 +233,7 @@ export default function DetallesCalzado({
         </div>
       </div>
       <ToastContainer />
-      <Footer />
+      
     </div>
   );
 }

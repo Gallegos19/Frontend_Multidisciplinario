@@ -6,12 +6,37 @@ import NavClient from '../../components/NavClient/NavClient';
 import Footer from '../../components/Footer/Footer';
 import NotFoundComponent from '../../components/NotFound/NotFoundComponent';
 
+
 const Tacones = () => {
   const { genero } = useParams();
   const generos = genero.slice(1).toLowerCase();
 
   const [data, setData] = useState([]);
   const [generoValue, setGeneroValue] = useState('');
+
+  const fetchData = async () => {
+    try {
+      const accessToken = localStorage.getItem('token');
+
+      const response = await fetch('http://localhost:8080/v1/Calzados?page=1&size=100', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`,
+        },
+      });
+
+      const result = await response.json();
+      if (result && Array.isArray(result.data)) {
+        const filteredData = result.data.filter(item => generoValue === item.genero.toLowerCase() && item.categoria.toLowerCase() === 'tacones');
+        setData(filteredData);
+      } else {
+        console.error('Invalid data format:', result);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   useEffect(() => {
     // Set generoValue directly based on generos
@@ -28,38 +53,15 @@ const Tacones = () => {
   }, [generos]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const accessToken = localStorage.getItem('token');
-  
-        const response = await fetch('http://localhost:8080/v1/Calzados?page=1&size=100', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`,
-          },
-        });
-  
-        const result = await response.json();
-        if (result && Array.isArray(result.data)) {
-          const filteredData = result.data.filter(item => generoValue === item.genero.toLowerCase() && item.categoria.toLowerCase() === 'tacones');
-          setData(filteredData);
-        } else {
-          console.error('Invalid data format:', result);
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-  
     fetchData();
   }, [generoValue]);
-  
+
   useEffect(() => {
     console.log('Data updated:', data);
   }, [data]);
 
   if (!Array.isArray(data) || data.length === 0) {
+    fetchData();
     return (
       <div style={{ display: 'flex', flexDirection: 'column', width: '100%', margin: 'auto', justifyContent:'center', alignItems:'center' }}>
         <NavClient />
@@ -95,6 +97,7 @@ const Tacones = () => {
       <Footer />
     </div>
   );
-}
+};
 
 export default Tacones;
+

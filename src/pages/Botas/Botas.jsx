@@ -27,7 +27,7 @@ const Botas = () => {
     }
   }, [generos]);
 
-  useEffect(() => {
+
     const fetchData = async () => {
       try {
         const accessToken = localStorage.getItem('token');
@@ -51,7 +51,7 @@ const Botas = () => {
         console.error('Error fetching data:', error);
       }
     };
-  
+    useEffect(() => {
     fetchData();
   }, [generoValue]);
   
@@ -60,6 +60,7 @@ const Botas = () => {
   }, [data]);
 
   if (!Array.isArray(data) || data.length === 0) {
+    fetchData();
     return (
       <div style={{ display: 'flex', flexDirection: 'column', width: '100%', margin: 'auto', justifyContent:'center', alignItems:'center' }}>
         <NavClient />

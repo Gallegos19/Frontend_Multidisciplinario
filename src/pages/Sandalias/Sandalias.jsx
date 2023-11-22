@@ -26,7 +26,7 @@ export default function Botas() {
     }
   }, [generos]);
 
-  useEffect(() => {
+  
     const fetchData = async () => {
       try {
         const accessToken = localStorage.getItem('token');
@@ -76,7 +76,7 @@ export default function Botas() {
         console.error('Error fetching data:', error);
       }
     };
-
+    useEffect(() => {
     fetchData();
   }, [generoValue, generos]);
 
@@ -86,6 +86,7 @@ export default function Botas() {
   }, [data, dataNinas]);
 
   if (!Array.isArray(data) || data.length === 0) {
+    fetchData();
     return (
       <div style={{ display: 'flex', flexDirection: 'column', width: '100%', margin: 'auto', justifyContent:'center', alignItems:'center' }}>
         <NavClient />

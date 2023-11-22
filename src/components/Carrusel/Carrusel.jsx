@@ -32,39 +32,20 @@ export default function Carrusel({ imagenes }) {
     setModelo(imagenes[newIndex]?.modelo || '');
   };
 
-  const handleImageClick = async () => {
-    // Llamar a la API de remove.bg para quitar el fondo
-    try {
-      const response = await axios.post(
-        'https://api.remove.bg/v1.0/removebg',
-        {
-          image_url: imagenActual.url_calzado,
-          size: 'auto',
-        },
-        {
-          headers: {
-            'key_Calzado': 'BU93nzUE8GXWoMLUnReQAJLX', // Reemplaza con tu clave de API
-          },
-        }
-      );
-
-      // Obtener la URL de la imagen sin fondo desde la respuesta
-      const imageUrlWithoutBackground = response.data.data.result_url;
-
-      // Ahora puedes utilizar imageUrlWithoutBackground en lugar de imagenActual.url_calzado
-      const data = {
-        id: imagenActual.id,
-        marca: marca,
-        imagen: imageUrlWithoutBackground,
-        modelo: modelo,
-        precio: imagenActual.precio,
-        stars: imagenActual.star,
-      };
-
-      handleAddToCart(data);
-    } catch (error) {
-      console.error('Error al quitar el fondo:', error);
-    }
+  const handleImageClick = () => {
+    const data = {
+      id: imagenActual.id,
+      marca: marca,
+      imagen: imagenActual.url_calzado,
+      tallas: imagenActual.tallas,
+      modelo: modelo,
+      precio: imagenActual.precio,
+      stars: imagenActual.star,
+   
+    };
+    
+  
+    handleAddToCart(data);
   };
 
   const imagenActual = imagenes[currentIndex];
@@ -87,7 +68,7 @@ export default function Carrusel({ imagenes }) {
         alt=""
         onClick={handlePrevClick}
       />
-
+      <div className={style.contenidotenis}>
       <p className={style.marca}>{marca}</p>
 
       <div className={style.imageContainer}>
@@ -97,6 +78,7 @@ export default function Carrusel({ imagenes }) {
       </div>
 
       <p className={style.modelo}>{modelo}</p>
+      </div>
       <img
         src={tennisDerecha}
         className={style.tennisDerecha}
