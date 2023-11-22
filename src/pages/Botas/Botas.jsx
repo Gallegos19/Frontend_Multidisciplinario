@@ -1,23 +1,70 @@
 // Botas.jsx
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import botasData from '../../components/ProductData/ProductData';
 import Cards from '../../components/CardClient/CardsClient';
 import NavClient from '../../components/NavClient/NavClient';
 import Footer from '../../components/Footer/Footer';
+import NotFoundComponent from '../../components/NotFound/NotFoundComponent';
 
 const Botas = () => {
   const { genero } = useParams();
-  const generos = genero.slice(1).charAt(0).toUpperCase() + genero.slice(2);
-  const data = botasData[generos.toLowerCase()].botas || [];
+  const generos = genero.slice(1).toLowerCase();
 
-  // Verificar si data es un array
+  const [data, setData] = useState([]);
+  const [generoValue, setGeneroValue] = useState('');
+
+  useEffect(() => {
+    // Set generoValue directly based on generos
+    if (generos === 'caballero') {
+      setGeneroValue('h');
+    } else if (generos === 'dama') {
+      setGeneroValue('f');
+    } else if (generos === 'ninos') {
+      setGeneroValue('k');
+    } else {
+      // Handle the case when generos is none of the expected values
+      setGeneroValue('');
+    }
+  }, [generos]);
+
+
+    const fetchData = async () => {
+      try {
+        const accessToken = localStorage.getItem('token');
+  
+        const response = await fetch('http://localhost:8080/v1/Calzados?page=1&size=100', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`,
+          },
+        });
+  
+        const result = await response.json();
+        if (result && Array.isArray(result.data)) {
+          const filteredData = result.data.filter(item => generoValue === item.genero.toLowerCase() && item.categoria.toLowerCase() === 'botas');
+          setData(filteredData);
+        } else {
+          console.error('Invalid data format:', result);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    useEffect(() => {
+    fetchData();
+  }, [generoValue]);
+  
+  useEffect(() => {
+    console.log('Data updated:', data);
+  }, [data]);
+
   if (!Array.isArray(data) || data.length === 0) {
-    // Manejo de caso en que data no es un array o está vacío
+    fetchData();
     return (
-      <div>
+      <div style={{ display: 'flex', flexDirection: 'column', width: '100%', margin: 'auto', justifyContent:'center', alignItems:'center' }}>
         <NavClient />
+        <NotFoundComponent />
         <p>No hay datos disponibles para mostrar.</p>
         <Footer />
       </div>
@@ -32,13 +79,16 @@ const Botas = () => {
         <div style={{ display: 'flex', width: '100%', margin: 'auto', flexWrap: 'wrap' }}>
           {data.map(producto => (
             <Cards
-              key={producto.id}
-              id={producto.id}
+              key={producto.productoID}
+              id={producto.productoID}
               marca={producto.marca}
-              imagen={producto.imagen}
+              imagen={producto.url_calzado}
               modelo={producto.modelo}
               precio={producto.precio}
-              stars={producto.star}
+              descripcion={producto.descripcion}
+              color={producto.color}
+              tallas={producto.tallas}
+              stars={producto.calificacion}
             />
           ))}
         </div>

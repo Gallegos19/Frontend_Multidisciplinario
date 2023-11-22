@@ -162,7 +162,7 @@ export default function ApartadosClient() {
       <div className={style.contenido}>
         {loading ? (
           <>
-            <div style={{ display: 'flex', flexDirection: 'column', height: '48vh', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', width:'90%', height: '48vh', justifyContent: 'center', alignItems: 'center' }}>
               <Loader />
               <p>Loading...</p>
             </div>

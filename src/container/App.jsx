@@ -17,6 +17,7 @@ import Sandalias from "../pages/Sandalias/Sandalias";
 import Zapatos from '../pages/Zapatos/Zapatos';
 import Tenis from "../pages/Tenis/Tenis";
 import ApartadosClient from "../pages/ApartadosClient/ApartadosClient";
+import NotFound from "../pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
       <CartProvider>
         <Routes>
           <Route path="/" element={<HomeClient />} />
-          <Route path="/marcas/:nombreMarca" element={<Marcas />} />
+          <Route path="/marcas/:marca" element={<Marcas />} />
           <Route path="/botas/:genero" element={<Botas />} />     
           <Route path="/sandalias/:genero" element={<Sandalias />} />   
           <Route path="/tenis/:genero" element={<Tenis />} />  
@@ -32,7 +33,7 @@ function App() {
           <Route path="/zapatos/:genero" element={<Zapatos />} />   
           <Route path="/especifica" element={<Especifica />} />
           <Route path="/apartado" element={<ApartadosClient />} />
-
+          <Route path="/notfound" element={<NotFound />}/>
           <Route path="/admin" element={<HomeAdmin />} />
           <Route path="/admin/vender" element={<Vender />} />
           <Route path="/admin/inventario" element={<InventarioAdmin />} />
