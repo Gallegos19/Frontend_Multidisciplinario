@@ -19,6 +19,8 @@ export default function Card(props) {
     modelo: props.modelo,    
     precio: props.precio,
     stars: props.stars,
+    tallas:props.tallas,
+    descripcion: props.descripcion,
   
     // Agrega más propiedades según sea necesario
   };
@@ -48,6 +50,7 @@ export default function Card(props) {
       </div>
       <div className={style.informacion}>
         <Rating ratingValue={props.stars} id={props.id} />
+        <Text text={props.marca} />
         <Text text={props.modelo} />
         <Text text={`Precio: $${props.precio}`} />
         {/* Ejemplo de cómo agregar al carrito */}

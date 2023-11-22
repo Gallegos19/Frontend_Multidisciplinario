@@ -25,7 +25,7 @@ function App() {
       <CartProvider>
         <Routes>
           <Route path="/" element={<HomeClient />} />
-          <Route path="/marcas/:nombreMarca" element={<Marcas />} />
+          <Route path="/marcas/:marca" element={<Marcas />} />
           <Route path="/botas/:genero" element={<Botas />} />     
           <Route path="/sandalias/:genero" element={<Sandalias />} />   
           <Route path="/tenis/:genero" element={<Tenis />} />  

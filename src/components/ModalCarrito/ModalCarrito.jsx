@@ -28,9 +28,51 @@ const ModalCarrito = ({ isOpen, onClose }) => {
     setConfirmationModalOpen(true);
   };
 
-  const handleAceptarApartado = () => {
+  const handleAceptarApartado = async() => {
     // Lógica para aceptar el apartado
     setConfirmationModalOpen(false);
+    const token = localStorage.getItem('token');
+      const requestBody = {
+        productoId: 3,
+        cantidad: 2,
+        precioUnitario: 20.0,
+        subTotal: 50.0,
+        descuento: 5,
+        total: 47.5,
+        clienteId: 3,
+        vigencia: "2023-12-01T12:00:00Z"
+      };
+    
+      try {
+        // Make the API request
+        const response = await fetch('http://localhost:8080/v1/Apartados', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            // Replace 'YOUR_ACCESS_TOKEN' with the actual token
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify(requestBody)
+        });
+    
+        if (response.ok) {
+          // Handle success
+          console.log('Apartado guardado exitosamente');
+          // Additional logic as needed after a successful request
+        } else {
+          // Handle error
+          console.error('Error al guardar el apartado:', response.statusText);
+          // Additional error handling as needed
+        }
+      } catch (error) {
+        console.error('Error:', error.message);
+        // Additional error handling as needed
+      } finally {
+        // Close the confirmation modal, regardless of success or failure
+        setConfirmationModalOpen(false);
+      }
+
+    
   };
 
   const handleRechazarApartado = () => {

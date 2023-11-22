@@ -31,16 +31,10 @@ font-family: 'Poppins';
 text-align:left;
 letter-spacing:0;
 }
-.inputdatos {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  width: 60%;
-}
+
 .inputdatos input {
   display: flex;
-  width: 62%;
+  width: 100%;
 }
 .inputs {
   display: flex;
@@ -90,8 +84,14 @@ letter-spacing:0;
     justify-content: center;
     gap: 2rem;
   }
+  .inputs{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+  }
   .inputdatos input {
-    width: 60%;
+    width: 100%;
     margin-right: 4rem;
   }
 }

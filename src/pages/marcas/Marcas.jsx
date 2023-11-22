@@ -1,60 +1,175 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import NavClient from '../../components/NavClient/NavClient';
-import Cards from '../../components/CardClient/CardsClient';
-import Footer from '../../components/Footer/Footer';
-import productosData from '../../components/ProductData/ProductData';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-const Marca = () => {
-  const { nombreMarca } = useParams(); 
-  console.log({nombreMarca})
-  const marca = nombreMarca.slice(1).charAt(0).toUpperCase() + nombreMarca.slice(2);
+import Cards from "../../components/CardClient/CardsClient";
+import NavClient from "../../components/NavClient/NavClient";
+import Footer from "../../components/Footer/Footer";
+import NotFoundComponent from "../../components/NotFound/NotFoundComponent";
 
-  if (marca === undefined) {
-    // Manejo de caso en que marca es undefined
-    return <p>Marca no definida</p>;
+const API_URL = "http://localhost:8080/v1/Calzados";
+
+export default function Marcas() {
+  const { marca } = useParams();
+  const MARCAS = marca?.slice(1).toLowerCase();
+  console.log("Marca" + MARCAS);
+
+  const [data, setData] = useState([]);
+  const [dataMujeres, setDataMujeres] = useState([]);
+
+  useEffect(() => {
+    const fetchCalzadosData = async () => {
+      try {
+        const accessToken = localStorage.getItem("token");
+
+        const response = await fetch(`${API_URL}?page=1&size=1000`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+
+        const result = await response.json();
+        console.log(result);
+
+        if (result && Array.isArray(result.data)) {
+          let filteredData = result.data;
+
+          if (MARCAS) {
+            // Filtering logic for Mujeres
+            let filteredMujeres = filteredData.filter(
+              (item) =>
+                "f" === item.genero.toLowerCase() &&
+                item.marca.toLowerCase() === MARCAS
+            );
+            setDataMujeres(filteredMujeres);
+            console.log(filteredMujeres);
+          }
+
+          // Filtering logic for Hombres
+          filteredData = filteredData.filter(
+            (item) =>
+              "h" === item.genero.toLowerCase() &&
+              item.marca.toLowerCase() === MARCAS
+          );
+
+          setData(filteredData);
+        } else {
+          console.error("Invalid data format:", result);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchCalzadosData();
+  }, [MARCAS]);
+
+  useEffect(() => {
+    console.log("Data updated:", data);
+    console.log("Data for Mujeres updated:", dataMujeres);
+  }, [data, dataMujeres]);
+
+  if (!Array.isArray(data) || data.length === 0) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          width: "100%",
+          margin: "auto",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <NavClient />
+        <NotFoundComponent />
+        <p>No hay datos disponibles para mostrar.</p>
+        <Footer />
+      </div>
+    );
   }
-  const productosHombre = productosData.marcas[marca.toLowerCase()] || [];
-  const productosMujer = productosData.marcas[`${marca.toLowerCase()}Mujer`] || [];
-  
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', width: '100%', margin: 'auto' }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        margin: "auto",
+      }}
+    >
       <NavClient />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          width: "80%",
+          margin: "auto",
+          marginTop: "5%",
+        }}
+      >
+        <h3 style={{ fontFamily: "Poppins", marginBottom: "2%" }}>
+          {" "}
+          Caballero
+        </h3>
+        <div
+          style={{
+            display: "flex",
+            width: "90%",
+            margin: "auto",
+            flexWrap: "wrap",
+          }}
+        >
+          {data.map((producto) => {
 
-      <div style={{ display: 'flex', flexDirection: 'column', width: '80%', margin: 'auto', marginTop: '2%' }}>
-        <h3 style={{ fontFamily: 'Poppins', marginBottom: '2%' }}>Hombres</h3>
-        <div style={{ display: 'flex', width: '100%', margin: 'auto', flexWrap: 'wrap' }}>
-          {productosHombre.map(producto => (
-            <Cards
-              key={producto.id}
-              id={producto.id}
-              marca={producto.marca}
-              imagen={producto.imagen}
-              modelo={producto.modelo}
-              precio={producto.precio}
-              stars={producto.star}
-            />
-          ))}
+            return (
+              <Cards
+                key={producto.productoID}
+                id={producto.productoID}
+                marca={producto.marca}
+                imagen={producto.url_calzado}
+                modelo={producto.modelo}
+                precio={producto.precio}
+                descripcion={producto.descripcion}
+                color={producto.color}
+                tallas={producto.tallas}
+                stars={producto.calificacion}
+              />
+            );
+          })}
         </div>
-
-        <h3 style={{ fontFamily: 'Poppins', marginBottom: '2%' }}>Mujeres</h3>
-        <div style={{ display: 'flex', width: '100%', margin: 'auto', flexWrap: 'wrap' }}>
-          {productosMujer.map(producto => (
-            <Cards
-              key={producto.id}
-              id={producto.id}
-              marca={producto.marca}
-              imagen={producto.imagen}
-              modelo={producto.modelo}
-              precio={producto.precio}
-              stars={producto.star}
-            />
-          ))}
-        </div>
+        {/* Render data for Mujeres if available */}
+        {dataMujeres.length > 0 && (
+          <>
+            <h4 style={{ fontFamily: "Poppins", marginBottom: "2%" }}>Damas</h4>
+            <div
+              style={{
+                display: "flex",
+                width: "90%",
+                margin: "auto",
+                flexWrap: "wrap",
+              }}
+            >
+              {dataMujeres.map((producto) => (
+                <Cards
+                  key={producto.productoID}
+                  id={producto.productoID}
+                  marca={producto.marca}
+                  imagen={producto.url_calzado}
+                  modelo={producto.modelo}
+                  precio={producto.precio}
+                  descripcion={producto.descripcion}
+                  color={producto.color}
+                  tallas={producto.tallas}
+                  stars={producto.calificacion}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </div>
       <Footer />
     </div>
   );
 }
-
-export default Marca;
