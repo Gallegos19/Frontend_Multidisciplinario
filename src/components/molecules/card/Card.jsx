@@ -100,6 +100,11 @@ const Card = ({ productoID, marca, modelo, inventario, tallas, precio, urls, idC
                 Inventario:
                 <input type="number" name="inventario" value={editedProduct.inventario} onChange={handleChange} className={style.input} />
               </label>
+              
+              <label className={style.label}>
+                Precio:
+                <input type="number" name="precio" value={editedProduct.precio} onChange={handleChange} className={style.input} />
+              </label>
               <div className={style.buttonContainer}>
                 <button onClick={handleSaveClick} className={style.saveButton}>
                   Guardar
