@@ -6,16 +6,17 @@ import style from "./Card.module.css";
 
 import { FaRegEdit } from "react-icons/fa";
 
-const Card = ({ productoID, marca, modelo, inventario, talla, precio, urls, onEliminar, onEditar }) => {
+const Card = ({ productoID, marca, modelo, inventario, tallas, precio, urls, idCliente, onEliminar, onEditar }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedProduct, setEditedProduct] = useState({
     productoID,
     marca,
     modelo,
     inventario,
-    talla,
+    tallas,
     precio,
-    imagen: urls && urls.length > 0 ? urls[0] : '', // Tomar la primera URL del array
+    imagen: urls && urls.length > 0 ? urls[0] : '',
+    idCliente,
   });
 
   useEffect(() => {
@@ -24,18 +25,18 @@ const Card = ({ productoID, marca, modelo, inventario, talla, precio, urls, onEl
       marca,
       modelo,
       inventario,
-      talla,
+      tallas,
       precio,
-      imagen: urls && urls.length > 0 ? urls[0] : '', // Tomar la primera URL del array
+      imagen: urls && urls.length > 0 ? urls[0] : '',
     });
-  }, [productoID, marca, modelo, inventario, talla, precio, urls]);
+  }, [productoID, marca, modelo, inventario, tallas, precio, urls]);
 
   const handleEditClick = () => {
     setIsEditing(true);
   };
 
   const handleSaveClick = () => {
-    onEditar(productoID, editedProduct);
+    onEditar(productoID, editedProduct, idCliente); // Pass idCliente to onEditar when saving
     setIsEditing(false);
   };
 
@@ -114,7 +115,7 @@ const Card = ({ productoID, marca, modelo, inventario, talla, precio, urls, onEl
             <Text text={`Marca: ${marca}`} />
             <Text text={`Modelo: ${modelo}`} />
             <Text text={`Inventario: ${inventario}`} />
-            <Text text={`Talla: ${talla}`} />
+            <Text text={`Talla: ${tallas}`} />
             <Text text={`Precio: $${precio}`} />
           </>
         )}
