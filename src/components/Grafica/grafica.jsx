@@ -10,9 +10,12 @@ export default function Grafica({ cards }) {
     }
 
     const productCount = cards.reduce((acc, card) => {
-      acc[card.modelo] = (acc[card.modelo] || 0) + card.cantidad;
+      const modelName = card.productoId ?? 'No Modelo'; // Usa 'No Modelo' si card.modelo es null o undefined
+      acc[modelName] = (acc[modelName] || 0) + card.cantidad;
       return acc;
     }, {});
+
+    console.log('productCount:', productCount);
 
     const data = {
       labels: Object.keys(productCount),
@@ -24,6 +27,8 @@ export default function Grafica({ cards }) {
         data: Object.values(productCount),
       }],
     };
+
+    console.log('data:', data);
 
     const options = {
       scales: {

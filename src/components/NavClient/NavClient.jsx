@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import style from "../NavAdmin/NavAdmin.module.css";
+import style from "./NavClient.module.css";
 import logo from "../../assets/logo.png";
 import Buscador from "../Buscador/Buscador";
 import { BiUserCircle, BiCart } from "react-icons/bi";

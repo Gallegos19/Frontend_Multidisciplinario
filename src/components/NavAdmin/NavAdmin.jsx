@@ -2,7 +2,8 @@ import React from "react";
 import style from "./NavAdmin.module.css";
 import logo from "../../assets/logo.png";
 import Buscador from "../Buscador/Buscador";
-import { BiUserCircle } from "react-icons/bi";
+import { IoIosHelpCircleOutline } from "react-icons/io";
+import { IoExitOutline } from "react-icons/io5";
 import { useNavigate, useLocation } from "react-router-dom";
 
 export default function NavAdmin() {
@@ -11,6 +12,14 @@ export default function NavAdmin() {
   const currentPath = location.pathname;
 
   const isLinkActive = (path) => currentPath.startsWith(path);
+
+  const handleCloseSesion = () =>{
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('id');
+    localStorage.removeItem('cachedUserData');
+    navigate("/login");
+  }
 
   return (
     <div className={style.containerNav}>
@@ -38,7 +47,8 @@ export default function NavAdmin() {
         <Buscador />
       </div>
       <div className={style.iconUser}>
-        <BiUserCircle size={50} color="black" />
+        <IoIosHelpCircleOutline size={40} color="black" />
+        <IoExitOutline size={40} color="black" onClick={handleCloseSesion}/>
       </div>
     </div>
   );

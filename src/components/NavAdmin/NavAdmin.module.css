@@ -51,8 +51,11 @@ a{
 .iconUser{
     display: flex;
     align-items: center;
-    justify-self: center;
-    margin-right: 5%;
+    justify-content:center;
+    margin-right: 1%;
+    gap: 3%;
+
+    
     
 }
 
