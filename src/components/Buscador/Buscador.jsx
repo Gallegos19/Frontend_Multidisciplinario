@@ -54,8 +54,17 @@ function Buscador() {
     // Almacenar la información del calzado seleccionado en localStorage
     localStorage.setItem('CardItem', JSON.stringify({ ...calzado, imagen: calzado.url_calzado }));
     // Redirigir a la página específica
-    navigate('/especifica');
-    window.location.reload()
+
+    const currentLocation = window.location.pathname;
+
+    // Verificar si la ubicación actual es '/vista-datos'
+    if (currentLocation === '/especifica') {
+      // Recargar la página
+      window.location.reload();
+    } else {
+      // Navegar a '/vista-datos'
+      navigate('/especifica');
+    }
   };
 
   return (
