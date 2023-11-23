@@ -50,7 +50,7 @@ export default function HomeAdmin() {
     };
 
     obtenerVentas();
-  }, []); // Se ejecuta solo una vez al montar el componente
+  }, []); 
 
   return (
     <div>

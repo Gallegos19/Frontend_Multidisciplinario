@@ -31,13 +31,11 @@ const UserMenu = () => {
     const cachedUserData = localStorage.getItem('cachedUserData');
 
     if (userId && cachedUserData) {
-      // Utiliza los datos en caché
       const userData = JSON.parse(cachedUserData);
       if (userData.data && userData.data.length > 0) {
         setUserName(userData.data[0].nombre);
       }
     } else if (userId) {
-      // Realiza la solicitud y actualiza la caché
       const fetchUserData = async () => {
         try {
           const response = await fetch(`http://localhost:8080/v1/Usuarios/${userId}`);

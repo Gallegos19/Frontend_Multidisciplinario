@@ -6,6 +6,8 @@ import tennis from "../../assets/nikeDunk.webp";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Cloudinary } from 'cloudinary-core';
+import {stompClient} from '../../utils/socket'
+
 
 const InventarioAdmin = () => {
   const cl = new Cloudinary({ cloud_name: 'drxfjtsnh' });
@@ -32,12 +34,41 @@ const InventarioAdmin = () => {
     tallas: [],
   });
 
+
+  
+  const mensajePublico = {
+    senderName: "Julian",
+    receiverName: "Pancho",
+    content: 'Se ha creado un nuevo calzado',
+    date: new Date().toISOString()};
+  const sendMessage = () => {
+   
+    if (stompClient !== null ) {
+      console.log('Enviando mensaje...');
+  
+      console.log('Mensaje a enviar:', mensajePublico);
+  
+      stompClient.send("/public/chat/notificaciones", {}, JSON.stringify(mensajePublico));
+    } else {
+      console.error('Error: la conexión no está establecida o en proceso de conexión');
+  
+    }
+  };
+
+  const onError = (error) => {
+    console.error('Error en la conexión WebSocket:', error);
+
+    connect();
+  };
+
+
+
+
+
   const handleSaveClick = (marca, id, editedProduct, idCliente) => {
     onEditar(marca, id, editedProduct, idCliente);
     setIsEditing(false);
   };
-
-
 
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
@@ -88,7 +119,6 @@ const InventarioAdmin = () => {
     }
   };
 
-
   useEffect(() => {
     getCalzados();
     getCategoria();
@@ -97,7 +127,7 @@ const InventarioAdmin = () => {
   const getCalzados = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch("http://localhost:8080/v1/Calzados?page=1&size=129", {
+      const response = await fetch("http://localhost:8080/v1/Calzados?page=1&size=1000", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -180,7 +210,6 @@ const InventarioAdmin = () => {
     setFormularioAbierto(true); // Abrir el formulario al hacer clic en el botón "Agregar Producto"
   };
 
-
   const cerrarFormulario = () => {
     setFormularioAbierto(false); // Cerrar el formulario al hacer clic en el botón "Cancelar"
   };
@@ -213,8 +242,6 @@ const InventarioAdmin = () => {
       }));
     }
   };
-
-
 
   const agregarProducto = async () => {
     console.log(nuevoProducto);
@@ -291,7 +318,7 @@ const InventarioAdmin = () => {
           "tipo": nuevoProducto.tipo,
           "inventario": nuevoProducto.inventario,
           "calificacion": nuevoProducto.calificacion,
-          "id_categoria": nuevoProducto.id_categoria,
+          "id_categoria": 2,
           "urls": [imageData.secure_url],
           "tallas": tallas,
         });
@@ -326,6 +353,9 @@ const InventarioAdmin = () => {
           setFormularioAbierto(false); // Cerrar el formulario después de agregar el producto
 
           toast.success("Producto agregado correctamente");
+
+          sendMessage();
+
         } else {
           const errorData = await response.json();
           throw new Error(`Error al agregar el producto: ${JSON.stringify(errorData)}`);

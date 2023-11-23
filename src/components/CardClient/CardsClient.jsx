@@ -53,10 +53,7 @@ export default function Card(props) {
         <Text text={props.marca} />
         <Text text={props.modelo} />
         <Text text={`Precio: $${props.precio}`} />
-        {/* Ejemplo de cómo agregar al carrito */}
-        {/* <div className={style.boton} onClick={onAdd}>
-          <Button nombre="Agregar al carrito" />
-        </div> */}
+       
       </div>
     </div>
   );

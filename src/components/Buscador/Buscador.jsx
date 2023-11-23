@@ -33,7 +33,7 @@ function Buscador() {
     };
 
     fetchCalzados();
-  }, []); // Se ejecuta solo una vez al montar el componente
+  }, []); 
 
   const filteredOptions = useMemo(() => {
     return calzados
@@ -55,6 +55,7 @@ function Buscador() {
     localStorage.setItem('CardItem', JSON.stringify({ ...calzado, imagen: calzado.url_calzado }));
     // Redirigir a la página específica
     navigate('/especifica');
+    window.location.reload()
   };
 
   return (

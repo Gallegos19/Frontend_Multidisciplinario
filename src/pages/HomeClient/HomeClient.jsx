@@ -50,6 +50,7 @@ export default function HomeClient() {
               marca={producto.marca}
               modelo={producto.modelo}
               precio={producto.precio}
+              tallas={producto.tallas}
               stars={producto.calificacion}
             />
           ))}

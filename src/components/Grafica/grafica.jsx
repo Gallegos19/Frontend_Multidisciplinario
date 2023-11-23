@@ -10,7 +10,7 @@ export default function Grafica({ cards }) {
     }
 
     const productCount = cards.reduce((acc, card) => {
-      const modelName = card.productoId ?? 'No Modelo'; // Usa 'No Modelo' si card.modelo es null o undefined
+      const modelName = card.productoId ?? 'No Modelo'; 
       acc[modelName] = (acc[modelName] || 0) + card.cantidad;
       return acc;
     }, {});
