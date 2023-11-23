@@ -6,16 +6,17 @@ import style from "./Card.module.css";
 
 import { FaRegEdit } from "react-icons/fa";
 
-const Card = ({ productoID, marca, modelo, inventario, talla, precio, urls, onEliminar, onEditar }) => {
+const Card = ({ productoID, marca, modelo, inventario, tallas, precio, urls, idCliente, onEliminar, onEditar }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedProduct, setEditedProduct] = useState({
     productoID,
     marca,
     modelo,
     inventario,
-    talla,
+    tallas,
     precio,
-    imagen: urls && urls.length > 0 ? urls[0] : '', // Tomar la primera URL del array
+    imagen: urls && urls.length > 0 ? urls[0] : '',
+    idCliente,
   });
 
   useEffect(() => {
@@ -24,18 +25,18 @@ const Card = ({ productoID, marca, modelo, inventario, talla, precio, urls, onEl
       marca,
       modelo,
       inventario,
-      talla,
+      tallas,
       precio,
-      imagen: urls && urls.length > 0 ? urls[0] : '', // Tomar la primera URL del array
+      imagen: urls && urls.length > 0 ? urls[0] : '',
     });
-  }, [productoID, marca, modelo, inventario, talla, precio, urls]);
+  }, [productoID, marca, modelo, inventario, tallas, precio, urls]);
 
   const handleEditClick = () => {
     setIsEditing(true);
   };
 
   const handleSaveClick = () => {
-    onEditar(productoID, editedProduct);
+    onEditar(productoID, editedProduct, idCliente); // Pass idCliente to onEditar when saving
     setIsEditing(false);
   };
 
@@ -99,6 +100,11 @@ const Card = ({ productoID, marca, modelo, inventario, talla, precio, urls, onEl
                 Inventario:
                 <input type="number" name="inventario" value={editedProduct.inventario} onChange={handleChange} className={style.input} />
               </label>
+              
+              <label className={style.label}>
+                Precio:
+                <input type="number" name="precio" value={editedProduct.precio} onChange={handleChange} className={style.input} />
+              </label>
               <div className={style.buttonContainer}>
                 <button onClick={handleSaveClick} className={style.saveButton}>
                   Guardar
@@ -114,7 +120,7 @@ const Card = ({ productoID, marca, modelo, inventario, talla, precio, urls, onEl
             <Text text={`Marca: ${marca}`} />
             <Text text={`Modelo: ${modelo}`} />
             <Text text={`Inventario: ${inventario}`} />
-            <Text text={`Talla: ${talla}`} />
+            <Text text={`Talla: ${tallas}`} />
             <Text text={`Precio: $${precio}`} />
           </>
         )}

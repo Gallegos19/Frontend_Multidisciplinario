@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "../css/App.css";
 import HomeClient from "../pages/HomeClient/HomeClient";
@@ -18,10 +18,83 @@ import Zapatos from '../pages/Zapatos/Zapatos';
 import Tenis from "../pages/Tenis/Tenis";
 import ApartadosClient from "../pages/ApartadosClient/ApartadosClient";
 import NotFound from "../pages/NotFound/NotFound";
+import SockJS from 'sockjs-client/dist/sockjs';
+import {over} from 'stompjs';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
+
 
 function App() {
+  
+
+const URI = "http://localhost:8081/ws";
+var stompClient=null;
+
+const connect = () => {
+  let socket = new SockJS(URI);
+  stompClient = over(socket);
+  stompClient.connect({}, onConnected, onError);
+};
+const onConnected = () => {
+  console.log('Conectado al servidor WebSocket');
+  stompClient.subscribe('/public/chat/notificaciones',onMessageReceived);
+ 
+};
+const onMessageReceived = (frame) => {
+  const messageBody = JSON.parse(frame.body);
+  console.log("Mensaje recibido:", messageBody);
+  
+  // Asegúrate de que `messageBody.content` sea la información correcta
+  let msg = messageBody.content;
+  console.log(msg);
+
+  // Añade un log antes de la llamada a toast.info
+  console.log("Antes de toast.info");
+
+  toast.info(`Mensaje recibido: ${messageBody.content}`, {
+    position: toast.POSITION.TOP_RIGHT,
+    autoClose: 2000,
+  });
+
+  // Añade un log después de la llamada a toast.info
+  console.log("Después de toast.info");
+};
+
+
+const onError = (error) => {
+  console.error('Error en la conexión WebSocket:', error);
+
+  connect();
+};
+  useEffect(() => {
+    connect()
+  }, []);
+  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+
+  const handleLogin = (token) => {
+    setIsAuthenticated(true);
+    localStorage.setItem("token", token);
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem("token");
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+
   return (
     <BrowserRouter>
+
       <CartProvider>
         <Routes>
           <Route path="/" element={<HomeClient />} />
@@ -33,15 +106,17 @@ function App() {
           <Route path="/zapatos/:genero" element={<Zapatos />} />   
           <Route path="/especifica" element={<Especifica />} />
           <Route path="/apartado" element={<ApartadosClient />} />
-          <Route path="/notfound" element={<NotFound />}/>
+          <Route path="/*" element={<NotFound />}/>
           <Route path="/admin" element={<HomeAdmin />} />
           <Route path="/admin/vender" element={<Vender />} />
           <Route path="/admin/inventario" element={<InventarioAdmin />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/admin/apartados" element={<Apartados />} />
+
         </Routes>
       </CartProvider>
+      <ToastContainer />
     </BrowserRouter>
   );
 }

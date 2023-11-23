@@ -1,4 +1,3 @@
-// ModalCarrito.js
 import React, { useState, useEffect } from "react";
 import style from "./ModalCarrito.module.css";
 import { useCartContext } from "../../context/CartContext";
@@ -36,7 +35,6 @@ const ModalCarrito = ({ isOpen, onClose }) => {
     const idclient= localStorage.getItem('id');
   
     try {
-      // Enviar una solicitud para cada producto en el carrito
       for (const producto of cart) {
         const vigencia = new Date();
       vigencia.setDate(vigencia.getDate() + 3);
@@ -46,9 +44,9 @@ const ModalCarrito = ({ isOpen, onClose }) => {
         cantidad: producto.cantidad,
         precioUnitario: producto.precio,
         subTotal: producto.precio * producto.cantidad,
-        descuento: 0, // Puedes ajustar esto según tus necesidades
+        descuento: 0, 
         total: producto.precio * producto.cantidad,
-        clienteId: idclient, // Cambia esto según tus necesidades
+        clienteId: idclient, 
         vigencia: vigencia.toISOString() 
         };
   
@@ -64,14 +62,12 @@ const ModalCarrito = ({ isOpen, onClose }) => {
         if (response.ok) {
           console.log(`Apartado para ${producto.nombre} guardado exitosamente`);
          
-          // Puedes agregar lógica adicional aquí después de una solicitud exitosa
         } else {
           console.error(`Error al guardar el apartado para ${producto.nombre}:`, response.statusText);
           toast.error(`Error al guardar el apartado para ${producto.nombre}:`, {
             position: toast.POSITION.TOP_RIGHT,
             autoClose: 2000,
           });
-          // Puedes manejar el error de alguna manera
         }
       }
     } catch (error) {
@@ -80,7 +76,6 @@ const ModalCarrito = ({ isOpen, onClose }) => {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,
       });
-      // Puedes manejar el error de alguna manera
     } finally {
       toast.success(`Apartado guardado exitosamente`, {
         position: toast.POSITION.TOP_RIGHT,
@@ -94,7 +89,6 @@ const ModalCarrito = ({ isOpen, onClose }) => {
   
 
   const handleRechazarApartado = () => {
-    // Lógica para rechazar el apartado
     setConfirmationModalOpen(false);
   };
 
@@ -103,12 +97,10 @@ const ModalCarrito = ({ isOpen, onClose }) => {
   };
 
   const handleEditCantidad = (id, newCantidad) => {
-    const maxCantidad = 3; // Establece el máximo permitido
+    const maxCantidad = 3; 
   
-    // Obtén el producto actual del carrito
     const productoActual = cart.find((producto) => producto.id === id);
   
-    // Asegúrate de que la nueva cantidad no sea menor que 1
     newCantidad = Math.max(1, newCantidad);
   
     const updatedCarrito = cart.map((producto) => {
@@ -118,13 +110,11 @@ const ModalCarrito = ({ isOpen, onClose }) => {
       return producto;
     });
   
-    // Verifica si la cantidad total en el carrito supera el límite
     const totalCarrito = updatedCarrito.reduce((acc, producto) => {
       return acc + producto.cantidad;
     }, 0);
   
     if (totalCarrito <= maxCantidad) {
-      // Si la nueva cantidad es menor o igual al máximo permitido, actualiza el carrito
       setCart(updatedCarrito);
     } else {
       toast.error(`Solo puede apartar máximo 3 calzados`, {

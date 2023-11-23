@@ -5,7 +5,6 @@ import Imagen from "../Imagen/Imagen";
 import Text from "../Text/Text";
 import Boton from "../button/Button";
 import { useCartContext } from "../../context/CartContext"; // Asegúrate de utilizar 'useCartContext' con 'u' minúscula
-// Al principio de tu archivo
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "../Footer/Footer";
@@ -30,13 +29,10 @@ export default function DetallesCalzado({
   const { clearCart, isInCart, removeProduct } = useCartContext(); // Accede a las funciones del contexto
 
   useEffect(() => {
-    // Obtener el producto del localStorage
     const productData = localStorage.getItem("CardItem");
 
-    // Parsear el objeto JSON de la cadena recuperada
     const parsedProductData = JSON.parse(productData);
 
-    // Actualizar el estado del producto con los datos parseados
     setProductData(parsedProductData);
   }, []);
 
@@ -64,8 +60,7 @@ export default function DetallesCalzado({
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 2000,
         });
-        // You can redirect the user to the login page or take appropriate action
-        // Example: navigate('/login');
+   
         return;
       }
       if (tallaSeleccionada === null) {

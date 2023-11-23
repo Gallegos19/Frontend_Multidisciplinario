@@ -6,12 +6,11 @@ export default function Fechas() {
   const [currentDate, setCurrentDate] = useState(new Date());
 
   useEffect(() => {
-    // Actualizar la fecha actual cada segundo (o según tus necesidades)
+    
     const intervalId = setInterval(() => {
       setCurrentDate(new Date());
     }, 1000);
 
-    // Limpieza del intervalo cuando el componente se desmonta
     return () => clearInterval(intervalId);
   }, []);
 

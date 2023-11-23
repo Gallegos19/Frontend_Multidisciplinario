@@ -1,135 +1,126 @@
 .contenedor{
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    gap: 2vh;
- 
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  gap: 2vh;
+
 
 }
 .contenedorCard{
-    display: flex;
-    width: 90%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
+  display: flex;
+  width: 90%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }
 h3{
-    font-family: 'Poppins';
+  font-family: 'Poppins';
 
 }
 .contenido{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: #D4CFCF;
-    padding: 2rem;
-    background-color: #D4CFCF;
-    width: 95%;
-    flex-wrap: wrap;
-    margin-bottom: 5%;
-    border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #D4CFCF;
+  padding: 2rem;
+  background-color: #D4CFCF;
+  width: 95%;
+  flex-wrap: wrap;
+  margin-bottom: 5%;
+  border-radius: 5px;
 }
 .cards{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 2%;
-    justify-content: center;
-    align-items: center;
-    max-height: 55vh;
-    overflow-y: auto;
-    width: 90%;
-    margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2%;
+  justify-content: center;
+  align-items: center;
+  max-height: 55vh;
+  overflow-y: auto;
+  width: 90%;
+  margin: auto;
 }
 .cards::-webkit-scrollbar{
 
-    border-radius: 5px;
+  border-radius: 5px;
 }
 
 .contenido2{
-        display: flex;
-        justify-content: center;
-        background-color: #D4CFCF;
-        padding: 2rem;
-        background-color: #D4CFCF;
-        gap: 10rem;
+      display: flex;
+      justify-content: center;
+      background-color: #D4CFCF;
+      padding: 2rem;
+      background-color: #D4CFCF;
+      gap: 10rem;
 }
 
 .formularioContainer {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 100%;
-  }
-
-
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
   
-  .formulario {
-    position: absolute;
-    top: 50%;
-    left: 90%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 2rem;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-  }
+}
 
-  .opciones button {
-    
-    margin-right: 10px;
-    padding: 10px;
-    cursor: pointer;
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-  }
-  .opciones button:last-child {
-    background-color: #f44336;
-  }
 
-  /* Estilos para los campos de entrada del formulario */
+
+.formulario {
+  justify-content: center;
+  justify-items: center;
+  position: absolute;
+  top: 80%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  
+}
+
+.opciones button {
+  
+  margin-right: 10px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+}
+.opciones button:last-child {
+  background-color: #f44336;
+}
+
+
 input,
 select {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  box-sizing: border-box;
-}
-/* Estilos para las etiquetas del formulario */
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-/* Estilos para los grupos de formulario */
-.formGroup {
-  margin-bottom: 15px;
+width: 100%;
+padding: 8px;
+margin-top: 5px;
+box-sizing: border-box;
 }
 
-  .agregar {
-    background-color: #292c29; 
-    color: white; 
-    padding: 10px 20px; 
-    font-size: 16px; 
-    border: none; 
-    border-radius: 5px; 
-    cursor: pointer;
-    transition: background-color 0.3s; 
-  
-    
-    &:hover {
-      background-color: #282a28;
-    }
-  }
-.opciones{
-  display: flex;
+label {
+display: flex;
+justify-content: space-between;
+justify-items: center;
+margin-bottom: 5px;
+gap: 4px;
+font-weight: bold;
+}
+
+.formGroup {
+margin-bottom: 15px;
+}
+
+.agregar {
   background-color: #292c29; 
   color: white; 
   padding: 10px 20px; 
@@ -144,42 +135,93 @@ label {
     background-color: #282a28;
   }
 }
-  .bt{
+.opciones{
+display: flex;
+background-color: #292c29; 
+color: white; 
+padding: 10px 20px; 
+font-size: 16px; 
+border: none; 
+border-radius: 5px; 
+cursor: pointer;
+transition: background-color 0.3s; 
+
+
+&:hover {
+  background-color: #282a28;
+}
+}
+.bt{
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  
+}
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px; 
+  font-size: 16px;
+  font-weight: bold;
+}
+
+@media screen and (max-width:480px) {
+  .formulario {
+    
+      position: absolute;
+      top: 65%;
+      left: 70%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 2rem;
+      width: 40%;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      
+    }
+    .contenido{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: #D4CFCF;
+      padding: 2rem;
+      background-color: #D4CFCF;
+      width: 80%;
+      margin: auto;
+      flex-wrap: wrap;
+      margin-bottom: 5%;
+      border-radius: 5px;
+  }
+  .formularioContainer {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     width: 100%;
     
   }
-
-  @media screen and (max-width:480px) {
-    .formulario {
-        position: absolute;
-        top: 45%;
-        left: 75%;
-        transform: translate(-50%, -50%);
-        background-color: white;
-        padding: 2rem;
-        border-radius: 5px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-      }
-    
-     
+  
+  
+   
 }   
 
 
 @media screen and (min-width: 480px) and (max-width: 912px) {
+  
     .formulario {
-        position: absolute;
-        top: 30%;
-        left: 80%;
-        transform: translate(-50%, -50%);
-        background-color: white;
-        padding: 2rem;
-        border-radius: 5px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-      }
-    
-    
+      position: absolute;
+      top: 40%;
+      left: 80%;
+      width: 30%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 2rem;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+     
+    }
+  
+  
 }
