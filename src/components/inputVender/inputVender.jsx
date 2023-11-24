@@ -5,7 +5,7 @@ export default function InputVender() {
         <div className={Style.contenedor}>
             <div className={Style.cantidad}>
                 <h3>ingresar pago</h3>
-                <input type="text" />
+                <input type='number' />
             </div>
 
         </div>

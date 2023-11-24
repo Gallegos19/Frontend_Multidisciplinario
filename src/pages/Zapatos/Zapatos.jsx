@@ -103,7 +103,7 @@ export default function Zapatos() {
       <NavClient />
       <div style={{ display: 'flex', flexDirection: 'column', width: '80%', margin: 'auto', marginTop: '5%' }}>
         <h3 style={{ fontFamily: 'Poppins', marginBottom: '2%' }}> {genero === ':caballero' ? 'zapatos para Hombres' : (genero === ':ninos' ? 'zapatos para Niños' : (genero === ':ninas' ? 'zapatos para Niñas' : 'zapatos para damas'))}</h3>
-        <div style={{ display: 'flex', width: '100%', margin: 'auto', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', width: '90%', margin: 'auto', flexWrap: 'wrap' }}>
           {data.map(producto => (
             <Cards
               key={producto.productoID}

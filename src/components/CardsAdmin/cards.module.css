@@ -8,17 +8,26 @@
     justify-content: center; 
     
 }
-
+.modelo{
+    display: flex;
+    max-width: 2rem;
+}
+.marca{
+    display: flex;
+    max-width: 2rem;
+}
 .contenido {
     display: flex;
-    gap: 40px;
+    gap: 3rem;
     align-items: center; 
     justify-content: center; 
 }
 .cantidad{
     display: flex;
+    align-items: center;
     justify-content: center;
-    width: 70px;
+    width: 6rem;
+    margin-left:5%;
 }
 
 

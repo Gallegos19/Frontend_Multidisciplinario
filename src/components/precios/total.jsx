@@ -16,7 +16,7 @@ export default function Total(props) {
                 </div>
                 <div className={Style.gancia}>
                     <h3>
-                        ${props.total}100000
+                        ${props.total}
                     </h3>
                 </div>
             </div>
