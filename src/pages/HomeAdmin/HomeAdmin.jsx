@@ -9,12 +9,14 @@ import NavAdmin from "../../components/NavAdmin/NavAdmin";
 export default function HomeAdmin() {
   const [cards, setCards] = useState([]);
   const [totalVentas, setTotalVentas] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [productos, setProductos] = useState([]); 
 
   useEffect(() => {
     const obtenerVentas = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:8080/v1/Ventas?page=1&size=30', {
+        const response = await fetch('http://localhost:8080/v1/Ventas?page=1&size=1000', {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
@@ -27,7 +29,11 @@ export default function HomeAdmin() {
 
         const data = await response.json();
 
-        // Filtrar por la fecha actual
+        if (!Array.isArray(data.data)) {
+          console.error('Los datos obtenidos no son un array:', data.data);
+          return;
+        }
+
         const ventasDelDia = data.data.filter((venta) => {
           const ventaFecha = new Date(venta.createdAt);
           const fechaActual = new Date();
@@ -40,17 +46,49 @@ export default function HomeAdmin() {
         });
 
         setCards(ventasDelDia);
+       
 
-        // Calcular el total de todas las ventas
-        const total = ventasDelDia.reduce((acc, venta) => acc + venta.total, 0);
+        const total = ventasDelDia.reduce((acc, venta) => acc + venta.total, 0).toFixed(2); 
         setTotalVentas(total);
       } catch (error) {
         console.error('Error en la petición fetch:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
+
     obtenerVentas();
+
+    const getCalzados = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch('http://localhost:8080/v1/Calzados?page=1&size=1000', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`Error al obtener calzados: ${response.status} - ${response.statusText}`);
+        }
+
+        const responseData = await response.json();
+
+        if (Array.isArray(responseData.data)) {
+          setProductos(responseData.data);
+        } else {
+          console.error('Los datos obtenidos no son un array:', responseData.data);
+        }
+      } catch (error) {
+        console.error('Error al obtener calzados:', error);
+      }
+    };
+
+    getCalzados();
   }, []); 
+
+
 
   return (
     <div>
@@ -65,7 +103,12 @@ export default function HomeAdmin() {
             <Registros cards={cards} />
             <div className={Style.contendorgrafica}>
               <h2>Productos más populares</h2>
-              <Grafica cards={cards} />
+              {loading ? (
+                <p>Cargando gráfica...</p>
+              ) : (
+                <Grafica cards={cards} productos={productos} />
+                
+              )}
             </div>
           </div>
         </div>
