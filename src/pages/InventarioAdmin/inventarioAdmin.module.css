@@ -11,6 +11,7 @@
 }
 .contenedorCard{
     display: flex;
+    
     width: 90%;
     flex-direction: column;
     justify-content: center;
@@ -70,8 +71,10 @@ h3{
 
   
   .formulario {
+    justify-content: center;
+    justify-items: center;
     position: absolute;
-    top: 90%;
+    top: 80%;
     left: 90%;
     transform: translate(-50%, -50%);
     background-color: white;
@@ -96,7 +99,7 @@ h3{
     background-color: #f44336;
   }
 
-  /* Estilos para los campos de entrada del formulario */
+  
 input,
 select {
   width: 100%;
@@ -104,13 +107,16 @@ select {
   margin-top: 5px;
   box-sizing: border-box;
 }
-/* Estilos para las etiquetas del formulario */
+
 label {
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
   margin-bottom: 5px;
+  gap: 4px;
   font-weight: bold;
 }
-/* Estilos para los grupos de formulario */
+
 .formGroup {
   margin-bottom: 15px;
 }
@@ -156,39 +162,66 @@ label {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100px; /* Adjust the height as needed */
+    height: 100px; 
     font-size: 16px;
     font-weight: bold;
   }
   
   @media screen and (max-width:480px) {
     .formulario {
+      
         position: absolute;
-        top: 45%;
-        left: 75%;
+        top: 65%;
+        left: 70%;
         transform: translate(-50%, -50%);
         background-color: white;
         padding: 2rem;
+        width: 40%;
         border-radius: 5px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         z-index: 1000;
+        
       }
+      .contenido{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: #D4CFCF;
+        padding: 2rem;
+        background-color: #D4CFCF;
+        width: 80%;
+        margin: auto;
+        flex-wrap: wrap;
+        margin-bottom: 5%;
+        border-radius: 5px;
+    }
+    .formularioContainer {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      width: 100%;
+      
+    }
+    
     
      
 }   
 
 
 @media screen and (min-width: 480px) and (max-width: 912px) {
-    .formulario {
+    
+      .formulario {
         position: absolute;
-        top: 30%;
+        top: 40%;
         left: 80%;
+        width: 30%;
         transform: translate(-50%, -50%);
         background-color: white;
         padding: 2rem;
         border-radius: 5px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         z-index: 1000;
+       
       }
     
     
