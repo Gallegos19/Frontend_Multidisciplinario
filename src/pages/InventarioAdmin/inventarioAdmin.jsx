@@ -248,15 +248,15 @@ const InventarioAdmin = () => {
 
     if (
       isNaN(nuevoProducto.inventario) ||
-      nuevoProducto.inventario <= 0 ||
+      nuevoProducto.inventario < 0 || nuevoProducto.inventario > 10000 ||
       isNaN(nuevoProducto.precio) ||
-      nuevoProducto.precio <= 0 ||
+      nuevoProducto.precio <= 0 || nuevoProducto.precio > 10000 ||
       isNaN(nuevoProducto.calificacion) ||
-      nuevoProducto.calificacion < 0 ||
-      nuevoProducto.tallas.length < 1 || // Usar nuevoProducto.tallas en lugar de tallas
+      nuevoProducto.calificacion < 0 || nuevoProducto.calificacion > 5 ||
+      nuevoProducto.tallas.length < 1 ||
       !image
     ) {
-      toast.error("Completa todas las casillas y asegúrate de que los números sean positivos, y al menos una talla seleccionada.");
+      toast.error("Completa todas las casillas y asegúrate de que los números sean positivos, y al menos una talla seleccionada, no sobre pasar los 10000 en inventario y precio, no poner mas de 5 en calificacion.");
     } else {
       try {
         const token = localStorage.getItem('token');

@@ -22,11 +22,7 @@ import SockJS from 'sockjs-client/dist/sockjs';
 import {over} from 'stompjs';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-
-
-
-
+import Ayuda from "../pages/ayuda/ayuda";
 function App() {
   
 
@@ -110,6 +106,7 @@ const onError = (error) => {
           <Route path="/admin" element={<HomeAdmin />} />
           <Route path="/admin/vender" element={<Vender />} />
           <Route path="/admin/inventario" element={<InventarioAdmin />} />
+          <Route path="/admin/ayuda" element={<Ayuda />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/admin/apartados" element={<Apartados />} />
