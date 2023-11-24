@@ -14,7 +14,7 @@ export default function HomeAdmin() {
     const obtenerVentas = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:8080/v1/Ventas?page=1&size=30', {
+        const response = await fetch('http://localhost:8080/v1/Ventas?page=1&size=100', {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
@@ -26,7 +26,6 @@ export default function HomeAdmin() {
         }
 
         const data = await response.json();
-
         // Filtrar por la fecha actual
         const ventasDelDia = data.data.filter((venta) => {
           const ventaFecha = new Date(venta.createdAt);
@@ -43,6 +42,7 @@ export default function HomeAdmin() {
 
         // Calcular el total de todas las ventas
         const total = ventasDelDia.reduce((acc, venta) => acc + venta.total, 0);
+        
         setTotalVentas(total);
       } catch (error) {
         console.error('Error en la petición fetch:', error);
@@ -62,7 +62,7 @@ export default function HomeAdmin() {
             <Total total={totalVentas} />
           </div>
           <div className={Style.registros}>
-            <Registros cards={cards} />
+            <Registros cards1={cards} />
             <div className={Style.contendorgrafica}>
               <h2>Productos más populares</h2>
               <Grafica cards={cards} />

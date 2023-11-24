@@ -7,6 +7,9 @@ export default function Registros({ cards1 }) {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
+    // Flag para verificar si el componente está montado
+    let isMounted = true;
+
     // Función para hacer la petición
     const buscarProductoPorId = async (productoId) => {
       try {
@@ -35,19 +38,29 @@ export default function Registros({ cards1 }) {
         if (response.ok) {
           // Convertir la respuesta a formato JSON
           const producto = await response.json();
-          console.log("Producto encontrado:", producto);
 
-          // Actualizar el estado con los datos recibidos
-          setCards((prevCards) => [
-            ...prevCards,
-            {
-              marca: producto.data[0].marca,
-              modelo: producto.data[0].modelo,
-              cantidad: producto.data[0].inventario,
-              precio: `$${producto.data[0].precio}`,
-              imagen: producto.data[0].url_calzado,
-            },
-          ]);
+          // Verificar si el componente está montado antes de actualizar el estado
+          if (isMounted) {
+            // Verificar si producto.data tiene elementos antes de acceder a ellos
+            if (producto.data && producto.data.length > 0) {
+              // Actualizar el estado con los datos recibidos
+          
+              localStorage.setItem('precio', producto.data[0].precio);
+
+              setCards((prevCards) => [
+                ...prevCards,
+                {
+                  marca: producto.data[0].marca,
+                  modelo: producto.data[0].modelo,
+                  cantidad: producto.data[0].inventario,
+                  precio: `$${ producto.data[0].precio}`,
+                  imagen: producto.data[0].url_calzado,
+                },
+              ]);
+            } else {
+              console.error("El array producto.data está vacío o indefinido:", producto);
+            }
+          }
         } else {
           // Manejar errores si la petición no fue exitosa
           console.error("Error al buscar el producto:", response.status);
@@ -57,10 +70,17 @@ export default function Registros({ cards1 }) {
       }
     };
 
-    // Iterar sobre los elementos en 'data' y buscar cada producto por su ID
-    cards1.forEach((venta) => {
-      buscarProductoPorId(venta.productoId);
-    });
+    // Verificar si el componente está montado antes de hacer la petición
+    if (isMounted && cards1 && cards1.productoId) {
+      buscarProductoPorId(cards1.productoId);
+    } else {
+      console.error("cards1 no tiene la propiedad productoId:", cards1);
+    }
+
+    // Función de limpieza para actualizar el estado solo si el componente está montado
+    return () => {
+      isMounted = false;
+    };
   }, [cards1]);
 
   return (
@@ -78,9 +98,9 @@ export default function Registros({ cards1 }) {
             key={index}
             marca={card.marca}
             modelo={card.modelo}
-            cantidad={card.cantidad}
+            cantidad={cards1.cantidad}
             precio={card.precio}
-            imagen= {card.imagen}
+            imagen={card.imagen}
           />
         ))}
       </div>

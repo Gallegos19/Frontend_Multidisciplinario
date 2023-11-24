@@ -7,7 +7,7 @@ export default function Contenido(props) {
     <div>
       <div className={Style.contenedor}>
         <div className={Style.contenido}>
-          <img src={Tenis} alt="" />
+          <img src={props.imagen} alt="" />
           <h3 className={Style.marca}>{props.marca}</h3>
           <h3 className={Style.modelo}>{props.modelo}</h3>
           <h3 className={Style.cantidad}>{props.cantidad}</h3>
