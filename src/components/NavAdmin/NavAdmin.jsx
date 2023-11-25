@@ -48,7 +48,7 @@ export default function NavAdmin() {
         <Buscador />
       </div>
       <div className={style.iconUser}>
-        <IoIosHelpCircleOutline size={40} color="black" />
+      <IoIosHelpCircleOutline size={40} color="black" onClick={() => navigate("/admin/ayuda")} style={{ fontWeight: isLinkActive("/admin/ayuda") ? "bold" : "normal" }}/>
         <IoExitOutline size={40} color="black" onClick={handleCloseSesion}/>
       </div>
     </div>

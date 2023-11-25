@@ -3,14 +3,13 @@ import Style from "./inventarioAdmin.module.css";
 import NavAdmin from "../../components/NavAdmin/NavAdmin";
 import Card from "../../components/molecules/card/Card";
 import tennis from "../../assets/nikeDunk.webp";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { Cloudinary } from 'cloudinary-core';
-import {stompClient} from '../../utils/socket'
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Cloudinary } from "cloudinary-core";
+import { stompClient } from "../../utils/socket";
 
 const InventarioAdmin = () => {
-  const cl = new Cloudinary({ cloud_name: 'drxfjtsnh' });
+  const cl = new Cloudinary({ cloud_name: "drxfjtsnh" });
   const [image, setImage] = useState(null);
   const [productos, setProductos] = useState([]);
   const fileInputRef = useRef(null);
@@ -30,40 +29,39 @@ const InventarioAdmin = () => {
     inventario: 0,
     calificacion: 0,
     id_categoria: "",
-    urls: '',
+    urls: "",
     tallas: [],
   });
 
-
-  
   const mensajePublico = {
     senderName: "Julian",
     receiverName: "Pancho",
-    content: 'Se ha creado un nuevo calzado',
-    date: new Date().toISOString()};
+    content: "Se ha creado un nuevo calzado",
+    date: new Date().toISOString(),
+  };
   const sendMessage = () => {
-   
-    if (stompClient !== null ) {
-      console.log('Enviando mensaje...');
-  
-      console.log('Mensaje a enviar:', mensajePublico);
-  
-      stompClient.send("/public/chat/notificaciones", {}, JSON.stringify(mensajePublico));
+    if (stompClient !== null) {
+      console.log("Enviando mensaje...");
+
+      console.log("Mensaje a enviar:", mensajePublico);
+
+      stompClient.send(
+        "/public/chat/notificaciones",
+        {},
+        JSON.stringify(mensajePublico)
+      );
     } else {
-      console.error('Error: la conexión no está establecida o en proceso de conexión');
-  
+      console.error(
+        "Error: la conexión no está establecida o en proceso de conexión"
+      );
     }
   };
 
   const onError = (error) => {
-    console.error('Error en la conexión WebSocket:', error);
+    console.error("Error en la conexión WebSocket:", error);
 
     connect();
   };
-
-
-
-
 
   const handleSaveClick = (marca, id, editedProduct, idCliente) => {
     onEditar(marca, id, editedProduct, idCliente);
@@ -101,7 +99,9 @@ const InventarioAdmin = () => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(`Error al subir la imagen: ${JSON.stringify(errorData)}`);
+        throw new Error(
+          `Error al subir la imagen: ${JSON.stringify(errorData)}`
+        );
       }
 
       const imageData = await response.json();
@@ -126,45 +126,57 @@ const InventarioAdmin = () => {
 
   const getCalzados = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch("http://localhost:8080/v1/Calzados?page=1&size=1000", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        "http://localhost:8080/v1/Calzados?page=1&size=1000",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (response.status === 302) {
-        const newLocation = response.headers.get('Location');
+        const newLocation = response.headers.get("Location");
         // Realizar otra solicitud a la nueva ubicación, si es necesario
       }
 
       const responseData = await response.json();
-      console.log('Datos obtenidos de la API:', responseData);
+      console.log("Datos obtenidos de la API:", responseData);
 
       if (Array.isArray(responseData.data)) {
-        const uniqueCategories = Array.from(new Set(responseData.data.map(item => item.categoria)));
+        const uniqueCategories = Array.from(
+          new Set(responseData.data.map((item) => item.categoria))
+        );
         const categorias = uniqueCategories.slice(0, 5); // Tomar solo las primeras cinco categorías
         const productosPorCategoria = categorias.map((categoria) => {
           return {
-            id_categoria: responseData.data.find(item => item.categoria === categoria).id,
+            id_categoria: responseData.data.find(
+              (item) => item.categoria === categoria
+            ).id,
             nombre_categoria: categoria,
-            productos: responseData.data.filter((producto) => producto.categoria === categoria),
+            productos: responseData.data.filter(
+              (producto) => producto.categoria === categoria
+            ),
           };
         });
         setProductos(productosPorCategoria);
       } else {
-        console.error('Los datos obtenidos no son un array:', responseData.data);
-        toast.error('Error al obtener calzados');
+        console.error(
+          "Los datos obtenidos no son un array:",
+          responseData.data
+        );
+        toast.error("Error al obtener calzados");
       }
     } catch (error) {
-      console.error('Error al obtener calzados:', error);
-      toast.error('Error al obtener calzados');
+      console.error("Error al obtener calzados:", error);
+      toast.error("Error al obtener calzados");
     }
   };
 
   const getCategoria = async () => {
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       const response = await fetch("http://localhost:8080/v1/Category", {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -172,22 +184,25 @@ const InventarioAdmin = () => {
       });
 
       if (response.status === 302) {
-        const newLocation = response.headers.get('Location');
+        const newLocation = response.headers.get("Location");
         // Realizar otra solicitud a la nueva ubicación, si es necesario
       }
 
       const responseData = await response.json();
-      console.log('Datos obtenidos de la API:', responseData);
+      console.log("Datos obtenidos de la API:", responseData);
 
       if (Array.isArray(responseData.data)) {
         setCategorias(responseData.data);
       } else {
-        console.error('Los datos obtenidos no son un array:', responseData.data);
-        toast.error('Error al obtener categorías');
+        console.error(
+          "Los datos obtenidos no son un array:",
+          responseData.data
+        );
+        toast.error("Error al obtener categorías");
       }
     } catch (error) {
-      console.error('Error al obtener categorías:', error);
-      toast.error('Error al obtener categorías');
+      console.error("Error al obtener categorías:", error);
+      toast.error("Error al obtener categorías");
     }
   };
 
@@ -248,19 +263,24 @@ const InventarioAdmin = () => {
 
     if (
       isNaN(nuevoProducto.inventario) ||
-      nuevoProducto.inventario <= 0 ||
+      nuevoProducto.inventario < 0 ||
+      nuevoProducto.inventario > 10000 ||
       isNaN(nuevoProducto.precio) ||
       nuevoProducto.precio <= 0 ||
+      nuevoProducto.precio > 10000 ||
       isNaN(nuevoProducto.calificacion) ||
       nuevoProducto.calificacion < 0 ||
-      nuevoProducto.tallas.length < 1 || // Usar nuevoProducto.tallas en lugar de tallas
+      nuevoProducto.calificacion > 5 ||
+      nuevoProducto.tallas.length < 1 ||
       !image
     ) {
-      toast.error("Completa todas las casillas y asegúrate de que los números sean positivos, y al menos una talla seleccionada.");
+      toast.error(
+        "Completa todas las casillas y asegúrate de que los números sean positivos, y al menos una talla seleccionada, no sobre pasar los 10000 en inventario y precio, no poner mas de 5 en calificacion."
+      );
     } else {
       try {
-        const token = localStorage.getItem('token');
-        console.log('Token:', token);
+        const token = localStorage.getItem("token");
+        console.log("Token:", token);
 
         const data = new FormData();
         data.append("file", fileInputRef.current.files[0]);
@@ -277,7 +297,9 @@ const InventarioAdmin = () => {
 
         if (!imageResponse.ok) {
           const errorData = await imageResponse.json();
-          throw new Error(`Error al subir la imagen: ${JSON.stringify(errorData)}`);
+          throw new Error(
+            `Error al subir la imagen: ${JSON.stringify(errorData)}`
+          );
         }
 
         const imageData = await imageResponse.json();
@@ -286,41 +308,41 @@ const InventarioAdmin = () => {
         const response = await fetch("http://localhost:8080/v1/Calzados", {
           method: "POST",
           headers: {
-            "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            "precio": nuevoProducto.precio,
-            "modelo": nuevoProducto.modelo,
-            "marca": nuevoProducto.marca,
-            "genero": nuevoProducto.genero,
-            "color": nuevoProducto.color,
-            "descripcion": nuevoProducto.descripcion,
-            "url_calzado": imageData.secure_url,
-            "tipo": nuevoProducto.tipo,
-            "inventario": nuevoProducto.inventario,
-            "calificacion": nuevoProducto.calificacion,
-            "id_categoria": nuevoProducto.id_categoria,
-            "urls": [imageData.secure_url],
-            "tallas": tallas,
+            precio: nuevoProducto.precio,
+            modelo: nuevoProducto.modelo,
+            marca: nuevoProducto.marca,
+            genero: nuevoProducto.genero,
+            color: nuevoProducto.color,
+            descripcion: nuevoProducto.descripcion,
+            url_calzado: imageData.secure_url,
+            tipo: nuevoProducto.tipo,
+            inventario: nuevoProducto.inventario,
+            calificacion: nuevoProducto.calificacion,
+            id_categoria: nuevoProducto.id_categoria,
+            urls: [imageData.secure_url],
+            tallas: tallas,
           }),
         });
 
         // Agrega este console.log para ver los datos que estás enviando en la solicitud
-        console.log('Datos enviados en la solicitud:', {
-          "precio": nuevoProducto.precio,
-          "modelo": nuevoProducto.modelo,
-          "marca": nuevoProducto.marca,
-          "genero": nuevoProducto.genero,
-          "color": nuevoProducto.color,
-          "descripcion": nuevoProducto.descripcion,
-          "url_calzado": imageData.secure_url,
-          "tipo": nuevoProducto.tipo,
-          "inventario": nuevoProducto.inventario,
-          "calificacion": nuevoProducto.calificacion,
-          "id_categoria": 2,
-          "urls": [imageData.secure_url],
-          "tallas": tallas,
+        console.log("Datos enviados en la solicitud:", {
+          precio: nuevoProducto.precio,
+          modelo: nuevoProducto.modelo,
+          marca: nuevoProducto.marca,
+          genero: nuevoProducto.genero,
+          color: nuevoProducto.color,
+          descripcion: nuevoProducto.descripcion,
+          url_calzado: imageData.secure_url,
+          tipo: nuevoProducto.tipo,
+          inventario: nuevoProducto.inventario,
+          calificacion: nuevoProducto.calificacion,
+          id_categoria: 2,
+          urls: [imageData.secure_url],
+          tallas: tallas,
         });
 
         if (response.status === 401) {
@@ -355,13 +377,14 @@ const InventarioAdmin = () => {
           toast.success("Producto agregado correctamente");
 
           sendMessage();
-
         } else {
           const errorData = await response.json();
-          throw new Error(`Error al agregar el producto: ${JSON.stringify(errorData)}`);
+          throw new Error(
+            `Error al agregar el producto: ${JSON.stringify(errorData)}`
+          );
         }
       } catch (error) {
-        console.error('Error al agregar producto:', error);
+        console.error("Error al agregar producto:", error);
         toast.error(`Error al agregar producto: ${JSON.stringify(error)}`);
       }
     }
@@ -369,38 +392,36 @@ const InventarioAdmin = () => {
 
   const eliminarProducto = async (id) => {
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       const response = await fetch(`http://localhost:8080/v1/Calzados/${id}`, {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
-          'Authorization': `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
-
 
       if (response.ok) {
         // Update products after deletion
         await getCalzados();
-        toast.success('Producto eliminado.');
+        toast.success("Producto eliminado.");
       } else {
         const errorData = await response.json();
         throw new Error(`Error deleting product: ${JSON.stringify(errorData)}`);
       }
     } catch (error) {
-      console.error('Error deleting product:', error);
+      console.error("Error deleting product:", error);
       toast.error(`Error deleting product: ${error.message}`);
     }
   };
 
-
   const editarProducto = async (id, productoEditado) => {
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       const response = await fetch(`http://localhost:8080/v1/Calzados/${id}`, {
-        method: 'PATCH',
+        method: "PATCH",
         headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(productoEditado),
       });
@@ -410,18 +431,18 @@ const InventarioAdmin = () => {
         await getCalzados();
       } else {
         const errorData = await response.json();
-        throw new Error(`Error al editar el producto: ${JSON.stringify(errorData)}`);
+        throw new Error(
+          `Error al editar el producto: ${JSON.stringify(errorData)}`
+        );
       }
 
       // Move the toast.success outside the if block
-      toast.success('Producto editado correctamente.');
+      toast.success("Producto editado correctamente.");
     } catch (error) {
-      console.error('Error al editar producto:', error);
+      console.error("Error al editar producto:", error);
       // Optionally, you can show an error notification here if needed
     }
   };
-
-
 
   return (
     <div className={Style.contenedor}>
@@ -442,7 +463,11 @@ const InventarioAdmin = () => {
                 <div className={Style.formGroup}>
                   <label>
                     Categoria:
-                    <select name="id_categoria" value={nuevoProducto.id_categoria} onChange={handleChange}>
+                    <select
+                      name="id_categoria"
+                      value={nuevoProducto.id_categoria}
+                      onChange={handleChange}
+                    >
                       <option value="">Selecciona Categoría</option>
                       {categorias.map((categoriaItem) => (
                         <option key={categoriaItem.id} value={categoriaItem.id}>
@@ -456,17 +481,17 @@ const InventarioAdmin = () => {
                 <div className={Style.formGroup}>
                   <label>
                     Marca:
-                    <input
-                      type="string"
-                      name="marca"
-                      onChange={handleChange}
-                    />
+                    <input type="string" name="marca" onChange={handleChange} />
                   </label>
                 </div>
                 <div className={Style.formGroup}>
                   <label>
                     Modelo:
-                    <select name="modelo" value={nuevoProducto.modelo} onChange={handleChange}>
+                    <select
+                      name="modelo"
+                      value={nuevoProducto.modelo}
+                      onChange={handleChange}
+                    >
                       <option value="">Seleccionar Modelo</option>
                       <option value="Modelo1">Modelo1</option>
                       <option value="Modelo2">Modelo2</option>
@@ -489,7 +514,7 @@ const InventarioAdmin = () => {
                 <div className={Style.formGroup}>
                   <label>
                     Tallas:
-                    {[23, 24, 25, 26].map((tallaNumber) => (
+                    {[23, 24, 25, 26, 27, 28].map((tallaNumber) => (
                       <label key={tallaNumber}>
                         <input
                           type="checkbox"
@@ -497,16 +522,15 @@ const InventarioAdmin = () => {
                           value={tallaNumber}
                           checked={tallas.includes(tallaNumber)}
                           onChange={handleChange}
-                          disabled={tallas.length === 4 && !tallas.includes(tallaNumber)}
+                          disabled={
+                            tallas.length === 4 && !tallas.includes(tallaNumber)
+                          }
                         />
                         {tallaNumber}
                       </label>
                     ))}
                   </label>
                 </div>
-
-
-
 
                 <div className={Style.formGroup}>
                   <label>
@@ -518,7 +542,6 @@ const InventarioAdmin = () => {
                       onChange={handleChange}
                     />
                   </label>
-
                 </div>
                 <div className={Style.formGroup}>
                   <label>
@@ -533,13 +556,17 @@ const InventarioAdmin = () => {
                 </div>
                 <div className={Style.formGroup}>
                   <label>
-                    Genero:
-                    <input
-                      type="text"
+                    Género:
+                    <select
                       name="genero"
                       value={nuevoProducto.genero}
                       onChange={handleChange}
-                    />
+                    >
+                      <option value="H">Caballero</option>
+                      <option value="H">Dama</option>
+                      <option value="K">Niños</option>
+                      <option value="N">Niñas</option>
+                    </select>
                   </label>
                 </div>
                 <div className={Style.formGroup}>
@@ -555,13 +582,18 @@ const InventarioAdmin = () => {
                 </div>
                 <div className={Style.formGroup}>
                   <label>
-                    calificacion:
-                    <input
-                      type="number"
+                    Calificación:
+                    <select
                       name="calificacion"
                       value={nuevoProducto.calificacion}
                       onChange={handleChange}
-                    />
+                    >
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
                   </label>
                 </div>
                 <div className={Style.formGroup}>
