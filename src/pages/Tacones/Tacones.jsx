@@ -18,7 +18,7 @@ const Tacones = () => {
     try {
       const accessToken = localStorage.getItem('token');
 
-      const response = await fetch('http://localhost:8080/v1/Calzados?page=1&size=100', {
+      const response = await fetch('http://localhost:8080/v1/Calzados?page=1&size=1000', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
